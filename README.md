@@ -71,6 +71,16 @@ I ship. Everything below is a real thing with real users, not a tutorial repo.
 
 ---
 
+## Background
+
+Before I was shipping products, I spent about a decade in IT operations and federal-sector administration — help desk and hardware at **Seatrax** and **Treasure Chest Casino**, IT & Hardware Manager at the **Gameloft** game studio, IT Specialist at the **Audubon Institute**, and the last several years across three U.S. Embassies.
+
+That last stretch is more relevant than it sounds. As a **Consular Associate** I did biometric collection and verification, document adjudication, and fraud detection; I currently run the credentialing and access-control program for an embassy compound. Ten years of handling sensitive personal, biometric, and identity data under strict privacy and compliance rules is the reason I default to things like local-first architecture, explicit scope boundaries, and not storing what I don't need to store.
+
+Studied Game and Simulation Programming at **DeVry University**.
+
+---
+
 ## On working with AI
 
 I build *with* these models, deliberately and in the open. I'd rather be judged on whether the thing works, ships, and holds up under review.
