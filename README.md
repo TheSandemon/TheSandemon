@@ -35,7 +35,7 @@ I ship. Everything below is a real thing with real users, not a tutorial repo.
 | **[Port Visualizer](https://github.com/TheSandemon/port-visualizer)** | Windows desktop app for inspecting and managing active network ports. Live diffing, process-grouped views, UAC elevation for protected kills, tray integration. Replaces squinting at `netstat -ano`. | TypeScript · Electron · React · Vitest · GitHub Actions |
 | **[TNM Aeronautics Quests](https://github.com/TheSandemon/aeronautics_delivery_quests)** | Procedural hauling contracts for Minecraft airships. Compiles schematics into physics rigid bodies, generates dry-land routes across async chunk loading, tracks cargo that fractures mid-flight. | Java · NeoForge · Create: Aeronautics · Sable physics |
 | **[Aeronautics Preflight Checklist](https://github.com/TheSandemon/aeronautics_preflight_checklist)** | Client-side flight diagnostics — simulates mass, lift, center-of-lift offset, and thrust torque imbalance at max power before you launch a brick into the sky. | Java · NeoForge · Custom GUI |
-| **BloodHound(https://github.com/TheSandemon/aeronautics_preflight_checklist)** | Local-first canine bloodwork guide built for Wonderdog — turns flagged lab results across 40 common biomarkers into clear nutritional considerations and better questions for your veterinarian. | TypeScript · Next.js · Local-First Web App |
+| **[BloodHound](https://github.com/TheSandemon/aeronautics_preflight_checklist)** | Local-first canine bloodwork guide built for Wonderdog — turns flagged lab results across 40 common biomarkers into clear nutritional considerations and better questions for your veterinarian. | TypeScript · Next.js · Local-First Web App |
 
 ---
 
