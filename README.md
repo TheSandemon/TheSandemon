@@ -65,7 +65,7 @@ I ship. Everything below is a real thing with real users, not a tutorial repo.
 
 **AI — providers** · Anthropic · Google (Gemini, incl. Multimodal Live API) · OpenAI · DeepSeek · Meta Llama · Hugging Face · Replicate · Ollama · llama.cpp
 
-**AI — generative media** · Midjourney · Stability AI · Runway · Luma · Kling · ElevenLabs · Suno
+**AI — generative media** · NanoBanana · Seedance · Hailuo · Higgsfield · Midjourney · Stability AI · Runway · Luma · Kling · ElevenLabs · Suno
 
 **AI — agent engineering** · Claude Code · Gemini CLI · Codex CLI · Antigravity CLI · Model Context Protocol (MCP) · custom skills & subagents · multi-agent orchestration · tool calling · RAG · context engineering · evals
 
