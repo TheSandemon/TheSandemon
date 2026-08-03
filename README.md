@@ -2,7 +2,7 @@
 
 # Kyle Touchet
 
-**CREATIVE TECHNOLOGIST**
+**AI-Native Product Engineer | Automations Builder**
 
 *Bridging the gap between human imagination and machine intelligence.*
 *Building digital experiences that feel alive.*
