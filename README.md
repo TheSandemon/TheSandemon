@@ -2,10 +2,8 @@
 
 # Kyle Touchet
 
-**AI-Native Product Engineer | Agent Systems & Applied AI**
-
-*Bridging the gap between human imagination and machine intelligence.*
-*Building digital experiences that feel alive.*
+**AI Product Engineer | Agent Systems**
+**
 
 [![Portfolio](https://img.shields.io/badge/sand.gallery-E5AD23?style=for-the-badge&labelColor=07170D)](https://sand.gallery)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-07170D?style=for-the-badge&labelColor=8A7135)](https://www.linkedin.com/in/kyle-touchet/)
@@ -23,12 +21,6 @@
 
 ---
 
-## What I build
-
-My work spans **AI-powered production systems, games, and digital utilities**. I focus on projects that merge technical complexity with a strong aesthetic identity. Software that looks beautiful, feels premium, and functions flawlessly.
-
----
-
 ## Featured work
 
 | Project | What it is | Stack |
@@ -39,8 +31,6 @@ My work spans **AI-powered production systems, games, and digital utilities**. I
 | **[TNM Aeronautics Quests](https://github.com/TheSandemon/aeronautics_delivery_quests)** | Procedural hauling contracts for Minecraft airships. Compiles schematics into physics rigid bodies, generates dry-land routes across async chunk loading, tracks cargo that fractures mid-flight. | Java · NeoForge · Create: Aeronautics · Sable physics |
 | **[Aeronautics Preflight Checklist](https://github.com/TheSandemon/aeronautics_preflight_checklist)** | Client-side flight diagnostics — simulates mass, lift, center-of-lift offset, and thrust torque imbalance at max power before you launch a brick into the sky. | Java · NeoForge · Custom GUI |
 | **[BloodHound](https://github.com/TheSandemon/BloodHound)** · [live](https://bloodhound-nine.vercel.app) | Local-first canine bloodwork guide — turns flagged lab results across 40 biomarkers and four physiological systems into conservative nutritional considerations and better questions for your veterinarian. 70+ breed profiles, cross-marker pattern context, AAHA-style energy estimates. No accounts, uploads, analytics, or server-side health data. | Next.js · TypeScript · React · Zod · Vitest · Vercel |
-
-🔒 = shipped and live, source private. Happy to walk through the code or architecture on request.
 
 ---
 
@@ -64,7 +54,7 @@ I’m intentionally not tied to a single stack. I tend to learn the technology r
 
 ## Background
 
-Before I was shipping products, I spent about a decade in IT operations and federal-sector administration — help desk and hardware at **Seatrax** and **Treasure Chest Casino**, IT & Hardware Manager at the **Gameloft** game studio, IT Specialist at the **Audubon Institute**, and the last several years across three U.S. Embassies.
+I spent about a decade in IT operations and federal-sector administration, help desk and hardware at **Seatrax** and **Treasure Chest Casino**, IT & Hardware Manager at the **Gameloft** game studio, IT Specialist at the **Audubon Institute**, and the last several years across three U.S. Embassies abroad.
 
 As a **Consular Associate** I did biometric collection and verification, document adjudication, and fraud detection. Ten years of handling sensitive personal, biometric, and identity data under strict privacy and compliance rules is the reason I default to things like local-first architecture, explicit scope boundaries, and not storing what I don't need to store.
 
