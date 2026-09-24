@@ -6,7 +6,8 @@ from xml.etree import ElementTree
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from update_harness import (  # noqa: E402
-    extract_work_items, plan_steps, readme_block, render_panels, update_readme, wrap,
+    build_scenes, extract_work_items, fun_facts, longest_streak, plan_steps, readme_block, render_chat,
+    rotation, update_readme, wrap,
 )
 
 
@@ -36,6 +37,11 @@ class ExtractionTests(unittest.TestCase):
         body = "## Summary\n- Add **bold** [link](http://x) step\n* Keep `code` names\n1. Third\n- Fourth"
         self.assertEqual(plan_steps(body), ["Add bold link step", "Keep code names", "Third"])
         self.assertEqual(plan_steps("One sentence. Two sentence."), ["One sentence.", "Two sentence."])
+
+    def test_plan_steps_skip_attribution_and_lead_with_after(self):
+        body = ('<!-- ccr-projects-attribution: {"x": 1} -->\n_Requested by **Sand** · [thread](http://x)_\n\n'
+                "Before: the old lab.\n\nAfter: the new lab glows. It hums.\n\n🤖 Generated with Claude Code\n")
+        self.assertEqual(plan_steps(body), ["The new lab glows.", "It hums."])
 
     def test_wrap_marks_truncation(self):
         lines = wrap("alpha beta gamma delta epsilon", 11, 2)
@@ -78,10 +84,23 @@ class ExtractionTests(unittest.TestCase):
             extract_work_items({"pulls": [], "commits": [commit("Update lab status")]}, CONFIG)
 
 
+LAB_STATE = {
+    "activity": "BUILDING", "condition": "STABLE", "mode": "SHIPPING", "focus": "THE LAB",
+    "machines": [{}, {}], "machine_slots": 5, "contributions_7d": 9, "contributions_24h": 2,
+    "prs_7d": 3, "repos_touched_7d": 2, "workflow": "success", "total_6mo": 1234, "peak_day": 20,
+    "active_days": 40, "days": [{"count": 1}, {"count": 2}, {"count": 0}, {"count": 3}, {"count": 4}, {"count": 5}],
+}
+LAB_SNAPSHOT = {"repos": [
+    {"name": "godotion", "language": "GDScript", "fork": False, "pushed_at": "2026-08-10T00:00:00Z"},
+    {"name": "TheSandemon", "language": "Python", "fork": False, "pushed_at": "2026-09-24T00:00:00Z"},
+    {"name": "someones-game", "language": "TypeScript", "fork": True, "pushed_at": "2026-09-09T00:00:00Z"},
+]}
+
+
 class RenderTests(unittest.TestCase):
     def setUp(self):
-        commits = [commit(f"Change number {i} <b>&", repo=f"TheSandemon/repo{i % 3}", sha=f"{i:07d}abc")
-                   for i in range(14)]
+        commits = [commit(f"Add change number {i} <b>&", repo=f"TheSandemon/repo{i % 3}", sha=f"{i:07d}abc",
+                          date=f"2026-09-{10 + i}T22:30:00-05:00") for i in range(14)]
         pulls = [
             pull(9, "Tune <the> reactor & friends", body="- Plan A\n- Plan B",
                  files=["scripts/update_lab.py", "tests/test_update_lab.py", "README.md"]),
@@ -90,48 +109,75 @@ class RenderTests(unittest.TestCase):
         ]
         pulls[1].update(state="draft", updated_at="2026-09-10T00:00:00Z")
         self.work = extract_work_items({"pulls": pulls, "commits": commits}, CONFIG)
-        self.panels = render_panels(self.work, CONFIG)
+        self.scenes = build_scenes(self.work, CONFIG, LAB_STATE, LAB_SNAPSHOT)
+        self.svg = render_chat(self.scenes, self.work, CONFIG, LAB_STATE)
 
-    def test_every_panel_is_valid_escaped_and_loops_forever(self):
-        self.assertEqual([p["id"] for p, _ in self.panels], ["chat", "terminal", "flow"])
-        for panel, svg in self.panels:
-            with self.subTest(panel=panel["id"]):
-                self.assertNotIn("<the>", svg)
-                self.assertNotIn("<b>", svg)
-                motion = animations(svg)
-                self.assertGreaterEqual(len(motion), 3)
-                self.assertTrue(all(node.attrib.get("repeatCount") == "indefinite" for node in motion))
+    def test_one_chat_rotates_through_every_configured_scene(self):
+        self.assertEqual([s["id"] for s in self.scenes], [s["id"] for s in CONFIG["scenes"]])
+        root = ElementTree.fromstring(self.svg)
+        motion = animations(self.svg)
+        self.assertTrue(all(node.attrib.get("repeatCount") == "indefinite" for node in motion))
+        cycle = f"{7 * len(self.scenes):g}s"
+        rotating = [node for node in motion if node.attrib.get("dur") == cycle]
+        self.assertEqual(len(rotating), 3 * len(self.scenes))  # scene, sidebar topic and progress dot
+        self.assertIsNotNone(root)
 
-    def test_panels_show_real_work_text(self):
-        chat, terminal, flow = (svg for _, svg in self.panels)
-        self.assertIn("Tune &lt;the&gt; reactor &amp; friends", chat)
-        self.assertIn("Plan A", chat)
-        self.assertIn("Change number 0", terminal)
-        self.assertIn("animateTransform", terminal)  # a long commit list scrolls in a loop
-        self.assertIn("Draft pipeline", flow)
-        self.assertIn("app.test.ts", flow)
+    def test_first_frame_shows_only_the_first_scene(self):
+        self.assertIn('values="1;1;0;0;1"', rotation(0, 3, 21))
+        self.assertIn('values="0;0;1;1;0;0"', rotation(1, 3, 21))
+        self.assertIn('values="0;0;1;1;0"', rotation(2, 3, 21))
+        self.assertEqual(rotation(0, 1, 7), "")
 
-    def test_panel_order_and_hidden_panels_follow_config(self):
-        config = dict(CONFIG, panels=[{"id": "flow", "type": "flow"}, {"id": "chat", "type": "chat", "hidden": True}])
-        self.assertEqual([p["id"] for p, _ in render_panels(self.work, config)], ["flow"])
+    def test_chat_mixes_real_work_and_fun_about_sand(self):
+        self.assertNotIn("<the>", self.svg)
+        self.assertNotIn("<b>", self.svg)
+        self.assertIn("Tune &lt;the&gt; reactor &amp; friends", self.svg)
+        self.assertIn("Plan A", self.svg)
+        self.assertIn("Add change number 13", self.svg)
+        self.assertIn("Draft pipeline", self.svg)
+        self.assertIn("app.test.ts", self.svg)
+        self.assertIn(CONFIG["about"]["name"], self.svg)
+        self.assertIn("godotion", self.svg)
+        self.assertIn("forked for fun: someones-game", self.svg)
+        self.assertIn("2 of 5 machine bays lit", self.svg)
+        self.assertIn('"add" (14 times)', self.svg)
+
+    def test_fun_facts_come_from_real_activity(self):
+        facts = fun_facts(self.work, LAB_STATE, LAB_SNAPSHOT, dict(CONFIG, fun_facts=["Hand-written fact"]))
+        self.assertEqual(facts[0], "Hand-written fact")
+        self.assertIn("Night-owl index: 100% of commits arrive after 9pm.", facts)
+        self.assertIn("Longest streak in six months: 3 days in a row.", facts)
+        self.assertEqual(longest_streak([]), 0)
+        self.assertTrue(any(f.startswith("Speaks GDScript, Python") for f in facts))
+
+    def test_scene_order_hidden_scenes_and_missing_lab_data(self):
+        config = dict(CONFIG, scenes=[{"id": "shipped"}, {"id": "building", "hidden": True}, {"id": "lab"}, {"id": "nope"}])
+        self.assertEqual([s["id"] for s in build_scenes(self.work, config, {}, {})], ["shipped"])
         with self.assertRaises(RuntimeError):
-            render_panels(self.work, dict(CONFIG, panels=[{"id": "../x", "type": "chat"}]))
+            build_scenes(self.work, dict(CONFIG, scenes=[]), {}, {})
+
+    def test_no_line_overflows_the_bubble(self):
+        for scene in self.scenes:
+            for kind, value in scene["lines"]:
+                if kind != "stages":
+                    self.assertLessEqual(len(value), 98, value)
 
     def test_readme_block_replaces_only_marked_section(self):
         readme = "top\n<!-- harness:start -->\nold\n<!-- harness:end -->\nbottom\n"
-        updated = update_readme(readme, readme_block(self.panels))
+        updated = update_readme(readme, readme_block(self.svg))
         self.assertTrue(updated.startswith("top\n<!-- harness:start -->\n<img src=\"assets/harness-chat.svg\""))
         self.assertTrue(updated.endswith("<!-- harness:end -->\nbottom\n"))
         self.assertNotIn("old", updated)
-        self.assertEqual(update_readme(updated, readme_block(self.panels)), updated)
+        self.assertEqual(update_readme(updated, readme_block(self.svg)), updated)
         with self.assertRaises(RuntimeError):
-            update_readme("no markers", readme_block(self.panels))
+            update_readme("no markers", readme_block(self.svg))
 
-    def test_committed_readme_matches_committed_panels(self):
+    def test_committed_readme_points_at_the_single_chat(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        for panel in CONFIG["panels"]:
-            self.assertIn(f"assets/harness-{panel['id']}.svg", readme)
-            self.assertTrue((ROOT / "assets" / f"harness-{panel['id']}.svg").exists())
+        self.assertIn("assets/harness-chat.svg", readme)
+        self.assertNotIn("harness-terminal", readme)
+        self.assertNotIn("harness-flow", readme)
+        self.assertTrue((ROOT / "assets" / "harness-chat.svg").exists())
 
 
 if __name__ == "__main__":
