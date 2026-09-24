@@ -6,5 +6,7 @@
   "building_max_contributions_7d": 45,
   "focus_aliases": {
     "TheSandemon": "THE LAB"
-  }
+  },
+  "machine_slots": 5,
+  "ignore_repos": []
 }

@@ -4,6 +4,12 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '17 */6 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - 'config/**'
+      - '.github/workflows/update-lab.yml'
 
 permissions:
   contents: write
@@ -21,18 +27,24 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Generate lab scene
+      - name: Run tests
+        run: python -m unittest discover -s tests
+      - name: Fetch GitHub data
         env:
           GITHUB_TOKEN: ${{ secrets.LAB_HISTORY_TOKEN || secrets.GITHUB_TOKEN }}
-        run: python scripts/update_lab.py
-      - name: Commit changed scene
+        run: python scripts/fetch-github-data.py
+      - name: Compute lab state
+        run: python scripts/compute-lab-state.py
+      - name: Generate lab scene
+        run: python scripts/generate-lab-svg.py
+      - name: Commit changed outputs
         run: |
-          if git diff --quiet -- assets/lab.svg; then
-            echo "Lab state unchanged"
+          git add assets/lab.svg data/
+          if git diff --cached --quiet; then
+            echo "Lab outputs unchanged"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/lab.svg
           git commit -m "Update lab status"
           git push
