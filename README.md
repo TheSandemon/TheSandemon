@@ -10,7 +10,7 @@
 
 <br />
 
-![Sandemon's Lab: an animated workshop showing six months of GitHub contributions](assets/lab.svg)
+![Sandemon's Lab: an animated build facility whose reactor, machine bays and monitors are driven by GitHub activity](assets/lab.svg)
 
 </div>
 
