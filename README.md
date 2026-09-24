@@ -10,15 +10,15 @@
 
 <br />
 
-![Sandemon's Lab: a living pixel-art workshop driven by public GitHub activity](assets/lab.svg)
+![Sandemon's Lab: an animated workshop showing six months of GitHub contributions](assets/lab.svg)
 
 </div>
 
 ## Featured work
 
-<a href="https://ladderstar.com"><img src="assets/ladderstar.svg" alt="LadderStar — AI interviews and a jobs board. Visit ladderstar.com" width="100%" /></a>
+<a href="https://ladderstar.com"><img src="https://ladderstar.com/opengraph-image.png?opengraph-image.3xhvc8-f3cldk.png" alt="LadderStar — Rehearse real life with your AI Co-Star" width="100%" /></a>
 
-**[LadderStar.com](https://ladderstar.com)** is a live AI interviewer and jobs board. It brings voice-to-voice auditions, job discovery, public talent and employer profiles, consent-gated screening, and real-time messaging into one product.
+**[LadderStar.com](https://ladderstar.com)** is an AI voice coach for real-life practice. Rehearse conversations, presentations, and interviews out loud, get personalized feedback, and try again.
 
 <div align="center">
 
