@@ -13,7 +13,7 @@ from pathlib import Path
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from lab_common import CONFIG_PATH, LOG, SNAPSHOT_PATH, STATE_PATH, SVG_PATH, read_json, setup_logging, six_month_start, write_json  # noqa: E402
+from lab_common import CONFIG_PATH, LOG, ROOT, SNAPSHOT_PATH, STATE_PATH, SVG_PATH, read_json, setup_logging, six_month_start, write_json  # noqa: E402
 
 
 def load_stage(filename: str):
@@ -29,11 +29,14 @@ compute_stage = load_stage("compute-lab-state.py")
 render_stage = load_stage("generate-lab-svg.py")
 
 fetch_snapshot = fetch_stage.fetch_snapshot
+request_json = fetch_stage.request_json
 compute_state = compute_stage.compute_state
 chart_markup = render_stage.chart_markup
 render_svg = render_stage.render_svg
 
-__all__ = ["chart_markup", "compute_state", "fetch_snapshot", "render_svg", "six_month_start"]
+# ROOT, read_json and request_json stay importable for other generators (e.g. harness panels).
+__all__ = ["ROOT", "chart_markup", "compute_state", "fetch_snapshot", "read_json", "render_svg", "request_json",
+           "six_month_start"]
 
 
 def main() -> int:
