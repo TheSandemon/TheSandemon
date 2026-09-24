@@ -14,24 +14,75 @@
   ],
   "featured": [],
   "summaries": {},
-  "panels": [
+  "chat": {
+    "label": "AGENT CHAT",
+    "subtitle": "sand's lab assistant",
+    "scene_seconds": 7
+  },
+  "about": {
+    "name": "Kyle Touchet",
+    "role": "AI Native Product Engineer",
+    "tagline": "Ships AI-native products end to end. Currently teaching software to coach humans out loud.",
+    "projects": [
+      {
+        "name": "LadderStar",
+        "blurb": "AI voice coach. Rehearse conversations, presentations and interviews out loud, get feedback, try again."
+      },
+      {
+        "name": "sand.gallery",
+        "blurb": "the portfolio, the gallery, the front door"
+      }
+    ],
+    "links": [
+      "sand.gallery",
+      "ladderstar.com",
+      "linkedin.com/in/kyle-touchet"
+    ],
+    "motto": "You need only ask."
+  },
+  "fun_facts": [],
+  "scenes": [
     {
-      "id": "chat",
-      "type": "chat",
-      "label": "AGENT CHAT",
-      "subtitle": "task in, plan out"
+      "id": "building",
+      "topic": "now-building",
+      "question": "what are you cooking up right now?",
+      "quip": "Reactor's warm. Coffee is not."
     },
     {
-      "id": "terminal",
-      "type": "terminal",
-      "label": "TERMINAL ORCHESTRATOR",
-      "subtitle": "commit stream"
+      "id": "about",
+      "topic": "who-is-sand",
+      "question": "ok but who is Sand?",
+      "quip": ""
     },
     {
-      "id": "flow",
-      "type": "flow",
-      "label": "PLAN / BUILD / VERIFY",
-      "subtitle": "pipeline trace"
+      "id": "shipped",
+      "topic": "ship-log",
+      "question": "what shipped lately?",
+      "quip": "The commit gremlin has been fed."
+    },
+    {
+      "id": "fun",
+      "topic": "fun-facts",
+      "question": "tell me something fun",
+      "quip": "Recomputed every six hours. No facts were harmed."
+    },
+    {
+      "id": "lab",
+      "topic": "lab-status",
+      "question": "how's the lab holding up?",
+      "quip": "Beakers bubbling within normal parameters."
+    },
+    {
+      "id": "pipeline",
+      "topic": "pipeline",
+      "question": "status check on {number}?",
+      "quip": "No goblins detected in the pipes."
+    },
+    {
+      "id": "quests",
+      "topic": "side-quests",
+      "question": "what else is on the workbench?",
+      "quip": "Every repo is a portal. Some are just smaller."
     }
   ]
 }
