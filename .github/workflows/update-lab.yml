@@ -23,7 +23,7 @@ jobs:
           python-version: '3.12'
       - name: Generate lab scene
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.LAB_HISTORY_TOKEN || secrets.GITHUB_TOKEN }}
         run: python scripts/update_lab.py
       - name: Commit changed scene
         run: |
