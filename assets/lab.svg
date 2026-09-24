@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="960" height="360" viewBox="0 0 960 360" role="img" aria-labelledby="title desc">
-<title id="title">Sandemon's Lab — sleeping</title>
-<desc id="desc">Pixel-art scientist in an emerald circuit suit. Lab status sleeping, system stable, current experiment THE LAB.</desc>
+<title id="title">Sandemon's Lab — tinkering</title>
+<desc id="desc">Pixel-art scientist in an emerald circuit suit. Lab status tinkering, system stable, current experiment THE LAB.</desc>
 <rect width="960" height="360" fill="#09171a"/>
 <path d="M0 0H960V360H0Z" fill="none" stroke="#244d48" stroke-width="4"/>
 <rect x="12" y="12" width="936" height="42" fill="#102b2b" stroke="#3a7161" stroke-width="2"/>
@@ -8,8 +8,8 @@
 <text x="47" y="39" fill="#e9e4bc" font-family="monospace" font-size="18" font-weight="bold" letter-spacing="2">SANDEMON'S LAB</text>
 <text x="432" y="38" fill="#83bba4" font-family="monospace" font-size="12" letter-spacing="1">LIVE FROM THE WORKSHOP</text>
 <rect x="763" y="22" width="169" height="24" fill="#183b37" stroke="#70e0b3" stroke-width="2"/>
-<circle cx="778" cy="34" r="5" fill="#70e0b3"><animate attributeName="opacity" values="1;.35;1" dur="5s" repeatCount="indefinite"/></circle>
-<text x="792" y="39" fill="#e9e4bc" font-family="monospace" font-size="12" font-weight="bold">SLEEPING</text>
+<circle cx="778" cy="34" r="5" fill="#70e0b3"><animate attributeName="opacity" values="1;.35;1" dur="3.4s" repeatCount="indefinite"/></circle>
+<text x="792" y="39" fill="#e9e4bc" font-family="monospace" font-size="12" font-weight="bold">TINKERING</text>
 
 <!-- Skyline window: a nod to the sunset rooftop in the reference portrait. -->
 <rect x="28" y="70" width="240" height="180" fill="#1f3441" stroke="#639084" stroke-width="4"/>
@@ -34,7 +34,7 @@
 
 <!-- Scientist: dark hair, trimmed beard, emerald suit and gold circuit embroidery. -->
 <g id="scientist" shape-rendering="crispEdges">
-  <animateTransform attributeName="transform" type="translate" values="0 0;0 1;0 0" dur="5s" repeatCount="indefinite"/>
+  <animateTransform attributeName="transform" type="translate" values="0 0;0 1;0 0" dur="3.4s" repeatCount="indefinite"/>
   <rect x="326" y="195" width="92" height="67" fill="#075844"/>
   <rect x="333" y="202" width="78" height="55" fill="#08745a"/>
   <rect x="336" y="210" width="19" height="7" fill="#d6b46e"/>
@@ -78,10 +78,10 @@
 <rect x="700" y="103" width="173" height="149" fill="#163639" stroke="#5d8e7a" stroke-width="5"/>
 <path d="M720 123h132v108H720Z" fill="#0a262d" stroke="#3f766c" stroke-width="3"/>
 <path d="M766 131h38l27 45-27 45h-38l-27-45Z" fill="#1d6f5d" stroke="#70e0b3" stroke-width="5"/>
-<path d="M773 144h25l20 32-20 32h-25l-20-32Z" fill="#278d6e" opacity=".55"><animate attributeName="opacity" values=".4;.85;.4" dur="5s" repeatCount="indefinite"/></path>
-<circle cx="785" cy="176" r="24" fill="#70e0b3" opacity=".25"><animate attributeName="r" values="22;31;22" dur="5s" repeatCount="indefinite"/></circle>
-<circle cx="785" cy="176" r="17" fill="#70e0b3"><animate attributeName="opacity" values=".7;1;.7" dur="5s" repeatCount="indefinite"/></circle>
-<path d="M785 142v-13m0 94v-13m-47-34h-12m118 0h-12" stroke="#70e0b3" stroke-width="4" stroke-dasharray="6 4"><animate attributeName="stroke-dashoffset" values="0;-20" dur="5s" repeatCount="indefinite"/></path>
+<path d="M773 144h25l20 32-20 32h-25l-20-32Z" fill="#278d6e" opacity=".55"><animate attributeName="opacity" values=".4;.85;.4" dur="3.4s" repeatCount="indefinite"/></path>
+<circle cx="785" cy="176" r="24" fill="#70e0b3" opacity=".25"><animate attributeName="r" values="22;31;22" dur="3.4s" repeatCount="indefinite"/></circle>
+<circle cx="785" cy="176" r="17" fill="#70e0b3"><animate attributeName="opacity" values=".7;1;.7" dur="3.4s" repeatCount="indefinite"/></circle>
+<path d="M785 142v-13m0 94v-13m-47-34h-12m118 0h-12" stroke="#70e0b3" stroke-width="4" stroke-dasharray="6 4"><animate attributeName="stroke-dashoffset" values="0;-20" dur="3.4s" repeatCount="indefinite"/></path>
 <rect x="703" y="236" width="170" height="18" fill="#28584e"/>
 <text x="720" y="249" fill="#e9e4bc" font-family="monospace" font-size="10" font-weight="bold">REACTOR / NOMINAL</text>
 
@@ -93,16 +93,16 @@
 <path d="M107 262v-28h-5v-5h28v5h-5v28Z" fill="#675066" stroke="#b58da0" stroke-width="3"/>
 <path d="M107 248h18v13h-18Z" fill="#c47d9d"/>
 <circle cx="117" cy="238" r="2" fill="#f4b7c8"><animate attributeName="cy" values="249;225;249" dur="3.3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0" dur="3.3s" repeatCount="indefinite"/></circle>
-<rect x="893" y="122" width="23" height="15" fill="#70e0b3"><animate attributeName="opacity" values="1;.25;1" dur="5s" repeatCount="indefinite"/></rect>
+<rect x="893" y="122" width="23" height="15" fill="#70e0b3"><animate attributeName="opacity" values="1;.25;1" dur="3.4s" repeatCount="indefinite"/></rect>
 <rect x="898" y="137" width="13" height="29" fill="#46675b"/>
 
 <!-- Readable game-style HUD. -->
 <rect x="28" y="278" width="226" height="48" fill="#0b2728" stroke="#548477" stroke-width="2"/>
 <text x="40" y="295" fill="#79bda1" font-family="monospace" font-size="10" font-weight="bold">PUBLIC SIGNAL / 7 DAYS</text>
-<text x="40" y="314" fill="#e9e4bc" font-family="monospace" font-size="12">00 EVENTS  ·  00 REPOS</text>
+<text x="40" y="314" fill="#e9e4bc" font-family="monospace" font-size="12">02 EVENTS  ·  01 REPOS</text>
 <rect x="278" y="278" width="310" height="48" fill="#0b2728" stroke="#548477" stroke-width="2"/>
 <text x="290" y="295" fill="#79bda1" font-family="monospace" font-size="10" font-weight="bold">LAB MODE / STABLE</text>
-<text x="290" y="314" fill="#e9e4bc" font-family="monospace" font-size="12">00 SIGNALS IN 24H · IDLE LOOP ACTIVE</text>
+<text x="290" y="314" fill="#e9e4bc" font-family="monospace" font-size="12">02 SIGNALS IN 24H · IDLE LOOP ACTIVE</text>
 <rect x="612" y="278" width="309" height="48" fill="#0b2728" stroke="#548477" stroke-width="2"/>
 <text x="624" y="295" fill="#79bda1" font-family="monospace" font-size="10" font-weight="bold">WORKSHOP TRANSMISSION</text>
 <text x="624" y="314" fill="#e9e4bc" font-family="monospace" font-size="12">MAKE WEIRD THINGS WORK.</text>
