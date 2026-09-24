@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="260" viewBox="0 0 960 260" role="img" aria-labelledby="title desc">
+<title id="title">LadderStar — Find your next step</title>
+<desc id="desc">An illustrated LadderStar feature card with an ascending ladder, star, voice waveform, and product highlights.</desc>
+<rect width="960" height="260" rx="20" fill="#09171a"/>
+<rect x="2" y="2" width="956" height="256" rx="18" fill="none" stroke="#4b8576" stroke-width="3"/>
+<path d="M0 194C172 157 272 238 432 195S756 133 960 176V260H0Z" fill="#153a39"/>
+<path d="M0 220C172 183 272 264 432 221S756 159 960 202V260H0Z" fill="#1d5147"/>
+<g fill="#e8c773">
+<circle cx="582" cy="39" r="2"/><circle cx="847" cy="47" r="2"/><circle cx="905" cy="112" r="2"/><circle cx="632" cy="182" r="2"/>
+</g>
+<g transform="translate(75 40)">
+<path d="M0 176 66 18M62 176 128 18" stroke="#e7c576" stroke-width="10" stroke-linecap="round"/>
+<path d="M10 151h62M22 119h62M34 87h62M47 55h62M60 23h62" stroke="#e7c576" stroke-width="8" stroke-linecap="round"/>
+<path d="m142 0 6 16 17 1-13 11 4 17-14-9-14 9 4-17-13-11 17-1Z" fill="#f7dc8c"/>
+</g>
+<text x="287" y="75" fill="#f5f0d6" font-family="Arial, sans-serif" font-size="46" font-weight="700" letter-spacing="-1">LadderStar</text>
+<text x="289" y="108" fill="#a5ddc0" font-family="Arial, sans-serif" font-size="17" letter-spacing="2">FIND YOUR NEXT STEP</text>
+<path d="M291 151h23l10-21 14 42 15-33 10 12h25l11-16 12 30 12-14h23" fill="none" stroke="#e4c473" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="290" y="208" fill="#e3ead9" font-family="Arial, sans-serif" font-size="18">Live AI interviews  ·  Jobs  ·  Talent discovery</text>
+<rect x="759" y="185" width="158" height="43" rx="9" fill="#d8b762"/>
+<text x="778" y="212" fill="#102925" font-family="Arial, sans-serif" font-size="17" font-weight="700">Explore the site ↗</text>
+</svg>
