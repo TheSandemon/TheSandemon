@@ -1,9 +1,15 @@
-name: Update Sandemon's Lab
+name: Update profile visuals
 
 on:
   workflow_dispatch:
   schedule:
     - cron: '17 */6 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'config/**'
+      - 'scripts/**'
+      - '.github/workflows/update-lab.yml'
 
 permissions:
   contents: write
@@ -21,18 +27,29 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Run tests
+        id: tests
+        run: python -m unittest discover -s tests
       - name: Generate lab scene
         env:
           GITHUB_TOKEN: ${{ secrets.LAB_HISTORY_TOKEN || secrets.GITHUB_TOKEN }}
         run: python scripts/update_lab.py
-      - name: Commit changed scene
+      # Runs even if the lab failed, so one broken API call doesn't freeze both sections.
+      - name: Generate harness panels
+        # The default token keeps panel text limited to public work.
+        if: ${{ !cancelled() && steps.tests.outcome == 'success' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/update_harness.py
+      - name: Commit changed visuals
+        if: ${{ !cancelled() && steps.tests.outcome == 'success' }}
         run: |
-          if git diff --quiet -- assets/lab.svg; then
-            echo "Lab state unchanged"
+          git add assets/lab.svg assets/harness-*.svg README.md
+          if git diff --cached --quiet; then
+            echo "Profile visuals unchanged"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/lab.svg
-          git commit -m "Update lab status"
+          git commit -m "Update profile visuals"
           git push
