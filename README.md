@@ -17,9 +17,9 @@
 ## Work traces
 
 <!-- harness:start -->
-<img src="assets/harness-chat.svg" alt="AGENT CHAT: Make six-month history the centerpiece of Sandemon's Lab" width="100%" />
+<img src="assets/harness-chat.svg" alt="AGENT CHAT: Rework the lab into a GitHub-driven build facility" width="100%" />
 <img src="assets/harness-terminal.svg" alt="TERMINAL ORCHESTRATOR: recent commits" width="100%" />
-<img src="assets/harness-flow.svg" alt="PLAN / BUILD / VERIFY: Build Sandemon's animated pixel lab profile" width="100%" />
+<img src="assets/harness-flow.svg" alt="PLAN / BUILD / VERIFY: Add harness panels built from real GitHub work" width="100%" />
 <!-- harness:end -->
 
 ## Featured work
