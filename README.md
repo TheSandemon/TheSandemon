@@ -17,7 +17,7 @@
 ## Ask the lab
 
 <!-- harness:start -->
-<img src="assets/harness-chat.svg" alt="Agent Chat: Kyle Touchet's lab, now building Rework the lab into a GitHub-driven build facility" width="100%" />
+<img src="assets/harness-chat.svg" alt="Agent Chat: Kyle Touchet's lab, now building Fold the harness panels into one rotating agent chat" width="100%" />
 <!-- harness:end -->
 
 ## Featured work
