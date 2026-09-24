@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="300" viewBox="0 0 1080 300" role="img" aria-labelledby="title desc">
+<title id="title">TERMINAL ORCHESTRATOR: recent commits</title>
+<desc id="desc">A terminal-style harness panel scrolling recent commits: Sandemon's Lab: Make six-month history the centerpiece of Sandemon's Lab (#2); Sandemon's Lab: Build animated pixel lab profile README (#1); Sandemon's Lab: Revise README content for clarity and conciseness; Sandemon's Lab: docs: update profile README and showcase assets</desc>
+<defs>
+  <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#11292e"/><stop offset="1" stop-color="#071a21"/></linearGradient>
+  <linearGradient id="scan" x2="0" y2="1"><stop stop-color="#d9ffb5" stop-opacity="0"/><stop offset=".5" stop-color="#d9ffb5" stop-opacity=".06"/><stop offset="1" stop-color="#d9ffb5" stop-opacity="0"/></linearGradient>
+</defs>
+<rect width="1080" height="300" rx="16" fill="url(#bg)"/>
+<rect x="2" y="2" width="1076" height="296" rx="15" fill="none" stroke="#588878" stroke-width="3"/>
+<rect x="14" y="12" width="1052" height="34" rx="9" fill="#163a3a" stroke="#4c8371" stroke-width="2"/>
+<circle cx="34" cy="29" r="5" fill="#ff927b"/><circle cx="51" cy="29" r="5" fill="#ffd690"/>
+<circle cx="68" cy="29" r="5" fill="#8be5bd"><animate attributeName="opacity" values="1;.35;1" dur="2.4s" repeatCount="indefinite"/></circle>
+<text x="88" y="34" fill="#f3ebc7" font-family="monospace" font-size="14" font-weight="bold" letter-spacing="2">TERMINAL ORCHESTRATOR</text>
+<text x="330.4" y="34" fill="#86bea9" font-family="monospace" font-size="11" letter-spacing="1">COMMIT STREAM</text>
+<rect x="894" y="17" width="160" height="24" rx="12" fill="#275449" stroke="#8be5bd" stroke-width="2"/>
+<text x="974" y="33" fill="#f0eed0" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">4 COMMITS · 1 REPOS</text>
+<rect x="14" y="56" width="720" height="230" rx="10" fill="#061519" stroke="#1f4745" stroke-width="2"/>
+<text x="30" y="80" fill="#bdf798" font-family="monospace" font-size="13" font-weight="bold">$ orchestrate --trace --author TheSandemon</text>
+<text x="30" y="98" fill="#4d8674" font-family="monospace" font-size="10" font-weight="bold">DATE</text><text x="82" y="98" fill="#4d8674" font-family="monospace" font-size="10" font-weight="bold">REPO</text><text x="216" y="98" fill="#4d8674" font-family="monospace" font-size="10" font-weight="bold">SHA</text><text x="284" y="98" fill="#4d8674" font-family="monospace" font-size="10" font-weight="bold">MESSAGE</text>
+<clipPath id="logClip"><rect x="0" y="-14" width="690" height="138"/></clipPath>
+<g transform="translate(30 122)" clip-path="url(#logClip)"><text x="0" y="0" fill="#4d8674" font-family="monospace" font-size="12">09-24</text><text x="52" y="0" fill="#ffd690" font-family="monospace" font-size="12">Sandemon's Lab</text><text x="186" y="0" fill="#86bea9" font-family="monospace" font-size="12">f6e5261</text><text x="254" y="0" fill="#f3ebc7" font-family="monospace" font-size="12">Make six-month history the centerpiece of Sandemon's La…</text><text x="0" y="22" fill="#4d8674" font-family="monospace" font-size="12">09-24</text><text x="52" y="22" fill="#ffd690" font-family="monospace" font-size="12">Sandemon's Lab</text><text x="186" y="22" fill="#86bea9" font-family="monospace" font-size="12">be099a7</text><text x="254" y="22" fill="#f3ebc7" font-family="monospace" font-size="12">Build animated pixel lab profile README (#1)</text><text x="0" y="44" fill="#4d8674" font-family="monospace" font-size="12">09-10</text><text x="52" y="44" fill="#ffd690" font-family="monospace" font-size="12">Sandemon's Lab</text><text x="186" y="44" fill="#86bea9" font-family="monospace" font-size="12">1562651</text><text x="254" y="44" fill="#f3ebc7" font-family="monospace" font-size="12">Revise README content for clarity and conciseness</text><text x="0" y="66" fill="#4d8674" font-family="monospace" font-size="12">08-28</text><text x="52" y="66" fill="#ffd690" font-family="monospace" font-size="12">Sandemon's Lab</text><text x="186" y="66" fill="#86bea9" font-family="monospace" font-size="12">fd4d2e3</text><text x="254" y="66" fill="#f3ebc7" font-family="monospace" font-size="12">docs: update profile README and showcase assets</text></g>
+<path d="M28 258H718" stroke="#1f4745" stroke-width="1"/>
+<text x="30" y="276" fill="#8be5bd" font-family="monospace" font-size="14" font-weight="bold">›</text>
+<rect x="46" y="264" width="8" height="15" fill="#8be5bd"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.5;.5;1" dur="1.1s" repeatCount="indefinite"/></rect>
+<rect x="746" y="56" width="320" height="230" rx="10" fill="#0a2328" stroke="#1f4745" stroke-width="2"/>
+<text x="760" y="80" fill="#86bea9" font-family="monospace" font-size="10" font-weight="bold" letter-spacing="2">WORKERS / COMMITS</text>
+<text x="760" y="104" fill="#f3ebc7" font-family="monospace" font-size="11" font-weight="bold">Sandemon's Lab</text><text x="1040" y="104" fill="#86bea9" font-family="monospace" font-size="11" text-anchor="end">4</text><rect x="760" y="111" width="280" height="8" rx="4" fill="#10292d"/><rect x="760" y="111" width="280" height="8" rx="4" fill="#8be5bd"><animate attributeName="opacity" values=".55;1;.55" dur="2.0s" repeatCount="indefinite"/></rect>
+<rect x="6" y="-40" width="1068" height="40" fill="url(#scan)"><animate attributeName="y" values="-40;300" dur="6s" repeatCount="indefinite"/></rect>
+</svg>

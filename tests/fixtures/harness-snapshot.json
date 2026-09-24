@@ -1,0 +1,157 @@
+{
+  "pulls": [
+    {
+      "repo": "TheSandemon/TheSandemon",
+      "number": 2,
+      "title": "Make six-month history the centerpiece of Sandemon's Lab",
+      "body": "## Summary\n- Remove the portrait and make the six-month contribution archive the largest element in Sandemon's Lab.\n- Backfill every day in the rolling six-month window via GitHub GraphQL and scroll the line continuously; keep the reactor, beakers, window, and status displays animated.\n- Fix skyline windows, replace technical status copy with playful lab language, and use LadderStar's published Open Graph preview and current description.\n- Default to public contributions; allow a read-only LAB_HISTORY_TOKEN secret if private contribution counts should appear in the public SVG.\n\n## Verification\n- `python -m unittest discover -s tests -v`\n- Browser rendered the generated SVG at README width.\n- GitHub Actions update workflow succeeded twice on this branch; its own token generated the public six-month SVG.\r\n",
+      "state": "closed",
+      "merged_at": "2026-09-24T08:45:11Z",
+      "updated_at": "2026-09-24T08:45:15Z",
+      "url": "https://github.com/TheSandemon/TheSandemon/pull/2",
+      "files": [
+        {
+          "name": ".github/workflows/update-lab.yml",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "name": "README.md",
+          "additions": 3,
+          "deletions": 3
+        },
+        {
+          "name": "assets/lab.svg",
+          "additions": 78,
+          "deletions": 104
+        },
+        {
+          "name": "assets/ladderstar.svg",
+          "additions": 0,
+          "deletions": 22
+        },
+        {
+          "name": "config/lab.json",
+          "additions": 3,
+          "deletions": 3
+        },
+        {
+          "name": "scripts/update_lab.py",
+          "additions": 297,
+          "deletions": 168
+        },
+        {
+          "name": "state.md",
+          "additions": 4,
+          "deletions": 3
+        },
+        {
+          "name": "tests/test_update_lab.py",
+          "additions": 46,
+          "deletions": 26
+        }
+      ]
+    },
+    {
+      "repo": "TheSandemon/TheSandemon",
+      "number": 1,
+      "title": "Build Sandemon's animated pixel lab profile",
+      "body": "## Summary\n- Replace the GIF header with a looping, activity-driven pixel lab featuring a scientist based on the green-suit portrait.\n- Keep only LadderStar in Featured work, with a linked SVG feature card; remove the requested sections and update the title.\n- Add a standard-library generator, config, scheduled/manual GitHub Actions update, and state tests.\n\n## Verification\n- `python -m unittest discover -s tests -v`\n- `python scripts/update_lab.py` against live public GitHub activity\n- Parsed both SVGs as XML and inspected browser renders at README width.\r\n",
+      "state": "closed",
+      "merged_at": "2026-09-24T07:45:23Z",
+      "updated_at": "2026-09-24T07:45:27Z",
+      "url": "https://github.com/TheSandemon/TheSandemon/pull/1",
+      "files": [
+        {
+          "name": ".github/workflows/update-lab.yml",
+          "additions": 38,
+          "deletions": 0
+        },
+        {
+          "name": ".gitignore",
+          "additions": 2,
+          "deletions": 0
+        },
+        {
+          "name": "README.md",
+          "additions": 5,
+          "deletions": 55
+        },
+        {
+          "name": "assets/hf_20260831_082246_e4be785e-4d45-4080-8e7b-6b4b6736a77e_720p.gif",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "name": "assets/hf_20260831_083626_be1feca1-11c2-48e3-bfc8-c470d67160d0_720p.gif",
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "name": "assets/lab.svg",
+          "additions": 111,
+          "deletions": 0
+        },
+        {
+          "name": "assets/ladderstar.svg",
+          "additions": 22,
+          "deletions": 0
+        },
+        {
+          "name": "config/lab.json",
+          "additions": 10,
+          "deletions": 0
+        },
+        {
+          "name": "scripts/update_lab.py",
+          "additions": 257,
+          "deletions": 0
+        },
+        {
+          "name": "state.md",
+          "additions": 6,
+          "deletions": 0
+        },
+        {
+          "name": "tests/test_update_lab.py",
+          "additions": 51,
+          "deletions": 0
+        }
+      ]
+    }
+  ],
+  "commits": [
+    {
+      "repo": "TheSandemon/TheSandemon",
+      "private": false,
+      "sha": "f6e526131cfdde0d49cca8fd5a747030ed14f826",
+      "message": "Make six-month history the centerpiece of Sandemon's Lab (#2)\n\n* Redesign lab around six-month history monitor\n\n* Update lab status\n\n* Allow opt-in private history counts\n\n---------\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+      "date": "2026-09-24T08:45:10Z",
+      "url": "https://github.com/TheSandemon/TheSandemon/commit/f6e526131cfdde0d49cca8fd5a747030ed14f826"
+    },
+    {
+      "repo": "TheSandemon/TheSandemon",
+      "private": false,
+      "sha": "be099a720423e3f35f2259a49600dff34c513358",
+      "message": "Build animated pixel lab profile README (#1)",
+      "date": "2026-09-24T07:45:22Z",
+      "url": "https://github.com/TheSandemon/TheSandemon/commit/be099a720423e3f35f2259a49600dff34c513358"
+    },
+    {
+      "repo": "TheSandemon/TheSandemon",
+      "private": false,
+      "sha": "156265138e2c44612337a58259c1bc99b7d964fa",
+      "message": "Revise README content for clarity and conciseness\n\nRemoved outdated descriptions and streamlined the introduction section. Updated background information for clarity.",
+      "date": "2026-09-10T08:10:55Z",
+      "url": "https://github.com/TheSandemon/TheSandemon/commit/156265138e2c44612337a58259c1bc99b7d964fa"
+    },
+    {
+      "repo": "TheSandemon/TheSandemon",
+      "private": false,
+      "sha": "fd4d2e3f09119eedaa95f7fde3edc48449e7c834",
+      "message": "docs: update profile README and showcase assets",
+      "date": "2026-08-28T07:25:17Z",
+      "url": "https://github.com/TheSandemon/TheSandemon/commit/fd4d2e3f09119eedaa95f7fde3edc48449e7c834"
+    }
+  ]
+}
