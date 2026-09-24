@@ -1,9 +1,9 @@
 {
   "username": "TheSandemon",
   "profile_repo": "TheSandemon",
-  "quiet_max_events_7d": 0,
-  "tinkering_max_events_7d": 3,
-  "building_max_events_7d": 12,
+  "idle_max_contributions_7d": 0,
+  "tinkering_max_contributions_7d": 12,
+  "building_max_contributions_7d": 45,
   "focus_aliases": {
     "TheSandemon": "THE LAB"
   }
