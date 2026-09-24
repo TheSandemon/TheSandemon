@@ -14,6 +14,14 @@
 
 </div>
 
+## Work traces
+
+<!-- harness:start -->
+<img src="assets/harness-chat.svg" alt="AGENT CHAT: Make six-month history the centerpiece of Sandemon's Lab" width="100%" />
+<img src="assets/harness-terminal.svg" alt="TERMINAL ORCHESTRATOR: recent commits" width="100%" />
+<img src="assets/harness-flow.svg" alt="PLAN / BUILD / VERIFY: Build Sandemon's animated pixel lab profile" width="100%" />
+<!-- harness:end -->
+
 ## Featured work
 
 <a href="https://ladderstar.com"><img src="https://ladderstar.com/opengraph-image.png?opengraph-image.3xhvc8-f3cldk.png" alt="LadderStar — Rehearse real life with your AI Co-Star" width="100%" /></a>

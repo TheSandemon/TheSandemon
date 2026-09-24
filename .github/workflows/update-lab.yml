@@ -1,4 +1,4 @@
-name: Update Sandemon's Lab
+name: Update profile visuals
 
 on:
   workflow_dispatch:
@@ -7,8 +7,8 @@ on:
   push:
     branches: [main]
     paths:
-      - 'scripts/**'
       - 'config/**'
+      - 'scripts/**'
       - '.github/workflows/update-lab.yml'
 
 permissions:
@@ -28,6 +28,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Run tests
+        id: tests
         run: python -m unittest discover -s tests
       - name: Fetch GitHub data
         env:
@@ -37,14 +38,23 @@ jobs:
         run: python scripts/compute-lab-state.py
       - name: Generate lab scene
         run: python scripts/generate-lab-svg.py
+      # Runs even if the lab failed, so one broken API call doesn't freeze both sections.
+      - name: Generate harness panels
+        # The default token keeps panel text limited to public work.
+        if: ${{ !cancelled() && steps.tests.outcome == 'success' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/update_harness.py
       - name: Commit changed outputs
+        if: ${{ !cancelled() && steps.tests.outcome == 'success' }}
         run: |
-          git add assets/lab.svg data/
+          git add assets/lab.svg assets/harness-*.svg README.md
+          if [ -d data ]; then git add data/; fi
           if git diff --cached --quiet; then
-            echo "Lab outputs unchanged"
+            echo "Profile visuals unchanged"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Update lab status"
+          git commit -m "Update profile visuals"
           git push

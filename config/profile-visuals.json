@@ -1,0 +1,37 @@
+{
+  "username": "TheSandemon",
+  "include_private": false,
+  "max_commits": 30,
+  "max_pulls": 20,
+  "repo_aliases": {
+    "TheSandemon": "Sandemon's Lab"
+  },
+  "ignored_repos": [],
+  "ignored_patterns": [
+    "^Update lab status$",
+    "^Update profile visuals$",
+    "^Merge (pull request|branch|remote-tracking branch)\\b"
+  ],
+  "featured": [],
+  "summaries": {},
+  "panels": [
+    {
+      "id": "chat",
+      "type": "chat",
+      "label": "AGENT CHAT",
+      "subtitle": "task in, plan out"
+    },
+    {
+      "id": "terminal",
+      "type": "terminal",
+      "label": "TERMINAL ORCHESTRATOR",
+      "subtitle": "commit stream"
+    },
+    {
+      "id": "flow",
+      "type": "flow",
+      "label": "PLAN / BUILD / VERIFY",
+      "subtitle": "pipeline trace"
+    }
+  ]
+}
