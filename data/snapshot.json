@@ -743,6 +743,12 @@
   ],
   "events": [
     {
+      "created_at": "2026-09-25T11:00:44Z",
+      "repo": "TheSandemon/TheSandemon",
+      "size": 0,
+      "type": "PushEvent"
+    },
+    {
       "action": "merged",
       "created_at": "2026-09-25T11:10:39Z",
       "merged": false,
@@ -1111,11 +1117,6 @@
       "repo": "TheSandemon/world-of-claudecraft",
       "size": 0,
       "type": "PushEvent"
-    },
-    {
-      "created_at": "2026-08-29T07:56:37Z",
-      "repo": "TheSandemon/world-of-claudecraft",
-      "type": "CreateEvent"
     }
   ],
   "repos": [
@@ -1126,7 +1127,7 @@
       "language": "Python",
       "name": "TheSandemon",
       "private": false,
-      "pushed_at": "2026-09-25T11:10:54Z",
+      "pushed_at": "2026-09-25T11:49:44Z",
       "stars": 1
     },
     {
