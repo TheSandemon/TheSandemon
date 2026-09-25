@@ -146,13 +146,14 @@ class ConversationTests(ChatCase):
         self.assertNotIn("someones-game", text)
         self.assertIn("<the>", "".join(str(s) for s in self.steps))
         self.assertNotIn("<the>", self.svg)
-        self.assertIn("Tune &lt;the&gt;", self.svg)
+        self.assertIn(">&lt;the&gt; <", self.svg)
 
     def test_empty_beats_are_skipped(self):
         steps = build_conversation(self.work, dict(CONFIG, fun_facts=[]), {}, {}, TODAY)
         joined = str(steps)
         self.assertNotIn("contributions, 6 mo", joined)
-        self.assertNotIn(CONFIG["beats"][7]["questions"][0], self.questions(steps))
+        fun = next(b for b in CONFIG["beats"] if b["id"] == "fun")
+        self.assertNotIn(fun["questions"][0], self.questions(steps))
         with self.assertRaises(RuntimeError):
             build_conversation(self.work, dict(CONFIG, beats=[]), {}, {}, TODAY)
 
@@ -163,6 +164,22 @@ class ConversationTests(ChatCase):
         self.assertIn("Longest streak in six months: 3 days in a row.", facts)
         self.assertEqual(longest_streak([]), 0)
         self.assertTrue(any(f.startswith("Speaks GDScript, Python") for f in facts))
+
+    def test_pinned_and_hand_written_answers(self):
+        config = dict(CONFIG, beats=[
+            {"id": "intro", "question": "first"},
+            {"id": "a", "type": "qa", "question": "pinned second", "pinned": True, "say": ["**Yes.**"]},
+            *[{"id": f"q{i}", "type": "qa", "question": f"loose {i}", "say": [f"answer {i}"]} for i in range(6)],
+            {"id": "empty", "type": "qa", "question": "nothing to say"},
+            {"id": "contact", "question": "last"},
+        ])
+        for day in range(1, 6):
+            questions = self.questions(build_conversation(self.work, config, {}, {}, date(2026, 9, day)))
+            self.assertEqual(questions[:2], ["first", "pinned second"])
+            self.assertEqual(questions[-1], "last")
+            self.assertNotIn("nothing to say", questions)
+        steps = build_conversation(self.work, config, {}, {}, TODAY)
+        self.assertIn(("say", [[("Yes.", "b")]]), steps)
 
     def test_markdown_segments(self):
         self.assertEqual(md("a **b** `c` d"), [("a ", "r"), ("b", "b"), (" ", "r"), ("c", "m"), (" d", "r")])

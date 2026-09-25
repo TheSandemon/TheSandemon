@@ -14,20 +14,20 @@
   "summaries": {},
   "chat": {
     "name": "sand-agent",
-    "tagline": "answers from live GitHub history",
+    "tagline": "answers from live GitHub history and a resume",
     "accent": "#e5ad23",
     "placeholder": "Ask anything about Sand…",
-    "footer": "Answers are generated from public GitHub activity every 6 hours.",
+    "footer": "Answers come from public GitHub activity (refreshed every 6 hours) and Sand's resume.",
     "shuffle": true
   },
   "about": {
     "name": "Kyle Touchet",
-    "role": "AI Native Product Engineer",
-    "tagline": "Ships AI-native products end to end. Currently teaching software to coach humans out loud.",
+    "role": "Software Engineer and Creative Technologist",
+    "tagline": "Over ten years in IT operations and federal-sector administration, now designing and shipping production web, desktop and AI applications end to end.",
     "projects": [
       {
         "name": "LadderStar",
-        "blurb": "AI voice coach. Rehearse conversations, presentations and interviews out loud, get feedback, try again."
+        "blurb": "a live AI interview platform with a real-time, voice-to-voice audition room built on Google's Gemini Multimodal Live API."
       },
       {
         "name": "sand.gallery",
@@ -36,24 +36,57 @@
     ],
     "links": [
       "sand.gallery",
-      "ladderstar.com",
+      "kyletouchet@gmail.com",
+      "github.com/TheSandemon",
       "linkedin.com/in/kyle-touchet"
     ],
     "motto": "You need only ask.",
+    "career_source": "the resume",
     "career": [
       {
-        "title": "IT and Hardware Manager",
-        "org": "Gameloft",
-        "note": "the mobile game studio"
+        "title": "Access Control Coordinator",
+        "org": "U.S. Embassy Panama",
+        "note": "in the Regional Security Office"
+      },
+      {
+        "title": "Consular Associate",
+        "org": "U.S. Embassy Nicosia"
+      },
+      {
+        "title": "IT & Hardware Manager",
+        "org": "Gameloft"
       }
     ],
-    "after_hours": "Nights and weekends go to everything else in this chat."
+    "after_hours": "Sand is also looking for work right now, so this chat doubles as a cover letter."
   },
-  "fun_facts": [],
+  "fun_facts": [
+    "Has been a notary public and a passport acceptance agent at a U.S. embassy.",
+    "Has worked at U.S. embassies in three countries: Panama, Cyprus and Honduras.",
+    "Kept Autodesk Backburner render farms running for a game studio.",
+    "Did IT for a casino, where compliance meant state gaming regulations.",
+    "Deployed an entire network, servers and all, for a company acquisition.",
+    "Built a dog bloodwork guide with profiles for 70+ breeds.",
+    "Studied game and simulation programming, then went on to ship real game mods."
+  ],
   "beats": [
     {
       "id": "intro",
-      "question": "hey, who's Sand?"
+      "question": "hey, who's Sand?",
+      "pinned": true
+    },
+    {
+      "id": "open-to-work",
+      "type": "qa",
+      "pinned": true,
+      "question": "is Sand open to work?",
+      "think": 1.4,
+      "say": [
+        "**Yes.** Sand is looking for work right now, as a software engineer or creative technologist.",
+        "The pitch: production web, desktop and AI apps shipped end to end, on top of ten years of IT operations and federal-sector work handling sensitive identity data under strict privacy rules."
+      ],
+      "outro": [
+        "Say hi at **kyletouchet@gmail.com** or **sand.gallery**."
+      ]
     },
     {
       "id": "day-job",
@@ -64,21 +97,248 @@
       "question": "what's Sand building right now?"
     },
     {
+      "id": "ladderstar",
+      "type": "qa",
+      "question": "tell me more about LadderStar",
+      "think": 1.3,
+      "say": [
+        "**LadderStar** (ladderstar.com) is a live AI interview platform. Candidates audition in a real-time, voice-to-voice room running on Google's **Gemini Multimodal Live API**."
+      ],
+      "bullets": [
+        "A full product: job board, public talent and employer profiles, real-time messaging, an admin console and blog publishing",
+        "Token-based employer screenings with consent-gated recording",
+        "Firebase auth with rules-unit-tested Firestore security rules, plus Stripe billing"
+      ],
+      "outro": [
+        "Stack: Next.js, TypeScript, Firebase, the Gemini Live API, Stripe and Vercel."
+      ]
+    },
+    {
+      "id": "ai",
+      "type": "qa",
+      "question": "has Sand actually built with AI?",
+      "think": 1.6,
+      "say": [
+        "Plenty. Hands-on with models from **Anthropic**, **Google** and **OpenAI**, plus DeepSeek, Hugging Face, Replicate, Ollama and llama.cpp."
+      ],
+      "bullets": [
+        "Real-time voice interfaces, like LadderStar's voice-to-voice audition room",
+        "Multi-agent orchestration, tool calling and the **Model Context Protocol**",
+        "RAG, prompt and context engineering, and evaluations"
+      ]
+    },
+    {
       "id": "shipped",
       "question": "what shipped lately?"
+    },
+    {
+      "id": "bloodhound",
+      "type": "qa",
+      "question": "what's BloodHound?",
+      "think": 1.2,
+      "say": [
+        "A local-first guide for dog owners. It turns flagged canine lab results into conservative nutrition notes and structured questions to bring to a vet."
+      ],
+      "tiles": [
+        [
+          "40",
+          "biomarkers"
+        ],
+        [
+          "70+",
+          "breed profiles"
+        ],
+        [
+          "4",
+          "body systems"
+        ],
+        [
+          "0",
+          "accounts or uploads"
+        ]
+      ],
+      "outro": [
+        "Deterministic rules, an explicit non-diagnostic scope, and no server-side health data. Live at **bloodhound-nine.vercel.app**."
+      ]
+    },
+    {
+      "id": "stack",
+      "type": "qa",
+      "question": "what's in Sand's stack?",
+      "tool": [
+        "Reading the resume",
+        "Read the resume · technical skills"
+      ],
+      "think": 0.9,
+      "card": {
+        "header": "cat skills.txt",
+        "rows": [
+          [
+            "",
+            "languages",
+            "TypeScript, JavaScript, Python, Java, SQL, Bash, C++"
+          ],
+          [
+            "",
+            "frontend",
+            "React, Next.js, Vite, Tailwind CSS, Framer Motion, Three.js"
+          ],
+          [
+            "",
+            "backend",
+            "Node.js, Express, FastAPI, WebSockets, Firebase, Stripe"
+          ],
+          [
+            "",
+            "desktop",
+            "Electron, electron-vite, electron-builder, hardened IPC"
+          ],
+          [
+            "",
+            "testing",
+            "Vitest, Playwright, pytest, Testing Library, ESLint"
+          ],
+          [
+            "",
+            "devops",
+            "GitHub Actions, CI/CD, Docker, Vercel"
+          ]
+        ]
+      },
+      "outro": [
+        "Plus the IT side: Windows Server, Active Directory, networking, Microsoft 365 and hardware repair."
+      ]
     },
     {
       "id": "workbench",
       "questions": [
         "what else is on the workbench?",
-        "show me another project",
-        "got anything weirder?"
+        "show me another project"
       ],
-      "max_repos": 6
+      "max_repos": 4,
+      "skip": [
+        "BloodHound",
+        "port-visualizer",
+        "aeronautics_delivery_quests",
+        "aeronautics_preflight_checklist"
+      ]
+    },
+    {
+      "id": "embassies",
+      "type": "qa",
+      "question": "wait, Sand worked at embassies?",
+      "tool": [
+        "Reading the resume",
+        "Read the resume · professional experience"
+      ],
+      "think": 1.1,
+      "say": [
+        "Three of them, in the federal sector since 2021:"
+      ],
+      "card": {
+        "header": "career --federal",
+        "rows": [
+          [
+            "2023-now",
+            "Panama",
+            "Access Control Coordinator, Regional Security Office"
+          ],
+          [
+            "2022-23",
+            "Cyprus",
+            "Consular Associate, U.S. Embassy Nicosia"
+          ],
+          [
+            "2021",
+            "Honduras",
+            "Administrative Assistant, Community Liaison Office"
+          ]
+        ]
+      },
+      "outro": [
+        "Along the way: passport acceptance agent, notary public, biometric enrollment, and a 30+ page community newsletter every two weeks."
+      ]
     },
     {
       "id": "stats",
-      "question": "any stats?"
+      "question": "any GitHub stats?"
+    },
+    {
+      "id": "technomads",
+      "type": "qa",
+      "question": "what's Technomads?",
+      "think": 1.0,
+      "say": [
+        "The platform behind a public multiplayer game server, at **technomads.fun**."
+      ],
+      "bullets": [
+        "A member-facing site with Stripe-backed memberships",
+        "Automated server operations over SFTP and RCON",
+        "A custom launcher client, a Discord bridge, and the Java gameplay mods the server runs on"
+      ]
+    },
+    {
+      "id": "it-roots",
+      "type": "qa",
+      "question": "where did Sand's IT career start?",
+      "think": 1.0,
+      "say": [
+        "Years of hands-on IT before the federal work:"
+      ],
+      "card": {
+        "header": "career --it",
+        "rows": [
+          [
+            "2019",
+            "Audubon Institute",
+            "IT Specialist"
+          ],
+          [
+            "2018-19",
+            "Treasure Chest Casino",
+            "Technician II"
+          ],
+          [
+            "2015-18",
+            "Gameloft",
+            "IT & Hardware Manager"
+          ],
+          [
+            "2011-14",
+            "Seatrax Marine Cranes",
+            "IT / Quality Control"
+          ]
+        ]
+      },
+      "outro": [
+        "Highlights: render farms and test-device fleets at a game studio, Windows servers under state gaming rules, and a full network deployed for a company acquisition."
+      ]
+    },
+    {
+      "id": "port-visualizer",
+      "type": "qa",
+      "question": "any open source?",
+      "think": 1.1,
+      "say": [
+        "**Port Visualizer**, MIT-licensed: a Windows desktop app for inspecting and managing active TCP/UDP ports."
+      ],
+      "bullets": [
+        "Live connection diffing, process-grouped views and safe process termination, with UAC elevation and core system processes protected",
+        "Queries the native PowerShell API and falls back to netstat parsing when security policy blocks it",
+        "CI runs lint, type-check, unit tests, build and installer packaging on every push"
+      ]
+    },
+    {
+      "id": "mods",
+      "type": "qa",
+      "question": "hold on, airship mods?",
+      "think": 1.2,
+      "say": [
+        "Two published mods for Create: Aeronautics, on **CurseForge** and **Modrinth**: procedural delivery contracts with physics-compiled cargo, and a preflight tool that simulates mass, lift, balance and thrust torque."
+      ],
+      "outro": [
+        "A real bug from players: a server-thread ConcurrentModificationException. Sand moved chunk generation off-thread behind a tick-paced work queue and added regression tests."
+      ]
     },
     {
       "id": "habits",
@@ -92,6 +352,42 @@
         "what else should people know?"
       ],
       "per_answer": 3
+    },
+    {
+      "id": "numbers",
+      "type": "qa",
+      "question": "sum it up in numbers?",
+      "think": 1.0,
+      "tiles": [
+        [
+          "10+",
+          "years in IT"
+        ],
+        [
+          "3",
+          "U.S. embassies"
+        ],
+        [
+          "5",
+          "featured projects"
+        ],
+        [
+          "2",
+          "published mods"
+        ]
+      ],
+      "outro": [
+        "And one README that types itself."
+      ]
+    },
+    {
+      "id": "education",
+      "type": "qa",
+      "question": "where did Sand study?",
+      "think": 0.8,
+      "say": [
+        "Game and simulation programming at **DeVry University** (2010 to 2013), after computer science at **Miami Dade College** (2008 to 2010)."
+      ]
     },
     {
       "id": "contact",

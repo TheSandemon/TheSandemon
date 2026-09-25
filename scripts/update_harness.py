@@ -337,10 +337,11 @@ def beat_day_job(ctx: dict, spec: dict) -> list[dict]:
     lead += f", {now['note']}." if now.get("note") else "."
     paragraphs = [md(lead)]
     for role in roles[1:3]:
-        paragraphs.append(md(f"Before that: **{role['title']}** at **{role['org']}**."))
+        paragraphs.append(md(f"Earlier: **{role['title']}** at **{role['org']}**."))
     if ctx["config"].get("about", {}).get("after_hours"):
         paragraphs.append(md(ctx["config"]["about"]["after_hours"]))
-    return [{"steps": [("tool", "Checking LinkedIn", "Checked the public LinkedIn profile"), ("think", 0.9), ("say", paragraphs)]}]
+    source = ctx["config"].get("about", {}).get("career_source", "the resume")
+    return [{"steps": [("tool", f"Reading {source}", f"Read {source}"), ("think", 0.9), ("say", paragraphs)]}]
 
 
 def beat_building(ctx: dict, spec: dict) -> list[dict]:
@@ -377,16 +378,16 @@ def beat_shipped(ctx: dict, spec: dict) -> list[dict]:
     ]}]
 
 
-def workbench_repos(ctx: dict) -> list[dict]:
+def workbench_repos(ctx: dict, skip: list[str] = ()) -> list[dict]:
     config = ctx["config"]
-    ignored = {r.lower() for r in config.get("ignored_repos", [])} | {config["username"].lower()}
+    ignored = {r.lower() for r in [*config.get("ignored_repos", []), *skip]} | {config["username"].lower()}
     return [r for r in ctx["lab_snapshot"].get("repos", [])
             if r.get("name", "").lower() not in ignored and not r.get("fork") and not r.get("archived")
             and not r.get("private")]
 
 
 def beat_workbench(ctx: dict, spec: dict) -> list[dict]:
-    repos = workbench_repos(ctx)[: int(spec.get("max_repos", 6))]
+    repos = workbench_repos(ctx, spec.get("skip", []))[: int(spec.get("max_repos", 6))]
     questions = spec.get("questions") or ["what else is on the workbench?"]
     beats = []
     for index in range(0, len(repos), 2):
@@ -436,6 +437,26 @@ def beat_fun(ctx: dict, spec: dict) -> list[dict]:
     return beats
 
 
+def beat_qa(ctx: dict, spec: dict) -> list[dict]:
+    """A hand-written answer from config: optional tool row, paragraphs, bullets, stat tiles, a card and an outro."""
+    steps = []
+    if spec.get("tool"):
+        steps.append(("tool", spec["tool"][0], spec["tool"][1]))
+    steps.append(("think", float(spec.get("think", 1.2))))
+    if spec.get("say"):
+        steps.append(("say", [md(text) for text in spec["say"]]))
+    if spec.get("tiles"):
+        steps.append(("stats", [(str(number), label) for number, label in spec["tiles"][:4]]))
+    if spec.get("bullets"):
+        steps.append(("bullets", [md(text) for text in spec["bullets"]]))
+    if spec.get("card"):
+        rows = [tuple(str(cell) for cell in row[:3]) for row in spec["card"].get("rows", [])]
+        steps.append(("code", spec["card"].get("header", ""), rows))
+    if spec.get("outro"):
+        steps.append(("say", [md(text) for text in spec["outro"]]))
+    return [{"steps": steps}] if len(steps) > 1 else []
+
+
 def beat_contact(ctx: dict, spec: dict) -> list[dict]:
     about = ctx["config"].get("about", {})
     links = about.get("links", [])
@@ -450,26 +471,35 @@ def beat_contact(ctx: dict, spec: dict) -> list[dict]:
 BEATS = {
     "intro": beat_intro, "day-job": beat_day_job, "building": beat_building, "shipped": beat_shipped,
     "workbench": beat_workbench, "stats": beat_stats, "habits": beat_habits, "fun": beat_fun, "contact": beat_contact,
+    "qa": beat_qa,
 }
 
 
 def build_conversation(work: dict, config: dict, lab_state: dict, lab_snapshot: dict, today: date) -> list[tuple]:
-    """Expand the configured beats into steps. The first and last beats stay put; the middle reshuffles daily."""
+    """Expand the configured beats into steps.
+
+    The first and last beats, and any beat marked "pinned", keep their places; the rest trade places daily.
+    A beat's "type" picks its builder (defaulting to its id), so several "qa" beats can share one builder.
+    """
     ctx = {"work": work, "config": config, "lab_state": lab_state, "lab_snapshot": lab_snapshot}
-    groups = []
+    groups, pinned = [], []
     for spec in config.get("beats", []):
-        builder = BEATS.get(spec.get("id"))
+        builder = BEATS.get(spec.get("type", spec.get("id")))
         if not builder or spec.get("hidden"):
             continue
         beats = builder(ctx, spec)
         if beats:
             groups.append([dict(b, question=b.get("question") or spec.get("question") or spec["id"]) for b in beats])
+            pinned.append(bool(spec.get("pinned")))
     if not groups:
         raise RuntimeError("config/profile-visuals.json lists no beats with content")
     if config.get("chat", {}).get("shuffle", True) and len(groups) > 3:
-        middle = groups[1:-1]
-        random.Random(today.isoformat()).shuffle(middle)
-        groups = [groups[0], *middle, groups[-1]]
+        pinned[0] = pinned[-1] = True
+        slots = [i for i, fixed in enumerate(pinned) if not fixed]
+        loose = [groups[i] for i in slots]
+        random.Random(today.isoformat()).shuffle(loose)
+        for i, group in zip(slots, loose):
+            groups[i] = group
     steps = []
     for beat in (beat for group in groups for beat in group):
         steps.append(("user", beat["question"]))

@@ -285,15 +285,16 @@ def render_items(items: list[dict], cycle: float, accent: str, live: bool) -> st
                      f"{shown(item['t0'], item['t1'] + 0.05, cycle)}</rect>")
             out.append(words + cover + caret)
         elif kind == "code":
-            repo_w = max([width(row[1], "m", 13) for row in item["rows"]] + [0])
-            message_x = TX + 96 + repo_w
+            first_w = max([width(row[0], "m", 13) for row in item["rows"]] + [0])
+            middle_x = TX + 14 + (first_w + 18 if first_w else 0)
+            message_x = middle_x + max([width(row[1], "m", 13) for row in item["rows"]] + [0]) + 16
             box = (f'<rect x="{TX}" y="{y:.1f}" width="{TMAX}" height="{item["h"]}" rx="10" fill="{CODE}" stroke="{LINE}"/>'
                    + text_el(TX + 14, y + 22, fit_width(item["header"], "m", 12, TMAX - 28), "m", 12, FAINT)
                    + f'<path d="M{TX} {y + 32:.1f}H{TX + TMAX}" stroke="{LINE}"/>')
             rows = []
             for i, (left, middle, right) in enumerate(item["rows"]):
                 ry = y + 54 + i * 22
-                row = (text_el(TX + 14, ry, left, "m", 13, FAINT) + text_el(TX + 80, ry, middle, "m", 13, accent)
+                row = (text_el(TX + 14, ry, left, "m", 13, FAINT) + text_el(middle_x, ry, middle, "m", 13, accent)
                        + text_el(message_x, ry, fit_width(right, "m", 13, TX + TMAX - 14 - message_x), "m", 13))
                 rows.append(f'<g opacity="0">{shown(item["row_t"][i], None, cycle)}{row}</g>' if live else row)
             out.append((f'<g opacity="0">{shown(item["t0"], None, cycle)}{box}</g>' if live else box) + "".join(rows))
