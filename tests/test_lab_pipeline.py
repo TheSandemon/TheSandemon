@@ -3,10 +3,9 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 import unittest
-from xml.etree import ElementTree
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from update_lab import compute_state, fetch_stage, render_svg  # noqa: E402
+from update_lab import compute_state, fetch_stage  # noqa: E402
 
 
 FIXTURE = Path(__file__).resolve().parent / "fixtures" / "snapshot.json"
@@ -53,21 +52,16 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(state["mode"], "SHIPPING")
         self.assertTrue(state["log"][0].startswith("09-23 PUSH"))
 
-    def test_state_survives_json_round_trip_and_log_loops_seamlessly(self):
+    def test_state_survives_json_round_trip(self):
         state = compute_state(json.loads(FIXTURE.read_text()), CONFIG, NOW)
-        svg = render_svg(json.loads(json.dumps(state, default=str)))
-        root = ElementTree.fromstring(svg)
-        animations = [node for node in root.iter() if node.tag.rsplit("}", 1)[-1].startswith("animate")]
-        self.assertTrue(all(node.attrib.get("repeatCount") == "indefinite" for node in animations))
-        self.assertIn("1/5 BAYS ONLINE", svg)
-        self.assertEqual(svg.count("BAY OFFLINE"), 4)
-        self.assertIn("THE LAB", svg)
+        self.assertEqual(json.loads(json.dumps(state, default=str))["total_6mo"], state["total_6mo"])
 
-    def test_every_condition_and_activity_renders(self):
-        base = compute_state(json.loads(FIXTURE.read_text()), CONFIG, NOW)
-        for activity in ("SLEEPING", "TINKERING", "BUILDING", "OVERCLOCKED"):
-            for condition in ("STABLE", "ENERGIZED", "WARNING", "CRITICAL"):
-                ElementTree.fromstring(render_svg({**base, "activity": activity, "condition": condition}))
+    def test_fetch_keeps_public_repo_descriptions_for_the_chat(self):
+        raw = {"name": "godotion", "pushed_at": "2026-08-10T00:00:00Z", "language": "GDScript", "fork": False,
+               "archived": False, "private": False, "description": "Timeline editor", "stargazers_count": 1}
+        self.assertEqual(fetch_stage.trim_repo(raw)["description"], "Timeline editor")
+        self.assertEqual(fetch_stage.trim_repo(raw)["stars"], 1)
+        self.assertEqual(fetch_stage.trim_repo({"name": "x"})["description"], "")
 
     def test_fetch_trims_events_to_the_fields_the_lab_reads(self):
         raw = {

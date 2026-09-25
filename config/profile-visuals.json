@@ -3,9 +3,7 @@
   "include_private": false,
   "max_commits": 30,
   "max_pulls": 20,
-  "repo_aliases": {
-    "TheSandemon": "Sandemon's Lab"
-  },
+  "repo_aliases": {},
   "ignored_repos": [],
   "ignored_patterns": [
     "^Update lab status$",
@@ -15,9 +13,12 @@
   "featured": [],
   "summaries": {},
   "chat": {
-    "label": "AGENT CHAT",
-    "subtitle": "sand's lab assistant",
-    "scene_seconds": 7
+    "name": "sand-agent",
+    "tagline": "answers from live GitHub history",
+    "accent": "#e5ad23",
+    "placeholder": "Ask anything about Sand…",
+    "footer": "Answers are generated from public GitHub activity every 6 hours.",
+    "shuffle": true
   },
   "about": {
     "name": "Kyle Touchet",
@@ -38,51 +39,63 @@
       "ladderstar.com",
       "linkedin.com/in/kyle-touchet"
     ],
-    "motto": "You need only ask."
+    "motto": "You need only ask.",
+    "career": [
+      {
+        "title": "IT and Hardware Manager",
+        "org": "Gameloft",
+        "note": "the mobile game studio"
+      }
+    ],
+    "after_hours": "Nights and weekends go to everything else in this chat."
   },
   "fun_facts": [],
-  "scenes": [
+  "beats": [
     {
-      "id": "building",
-      "topic": "now-building",
-      "question": "what are you cooking up right now?",
-      "quip": "Reactor's warm. Coffee is not."
+      "id": "intro",
+      "question": "hey, who's Sand?"
     },
     {
-      "id": "about",
-      "topic": "who-is-sand",
-      "question": "ok but who is Sand?",
-      "quip": ""
+      "id": "day-job",
+      "question": "what does Sand do by day?"
+    },
+    {
+      "id": "building",
+      "question": "what's Sand building right now?"
     },
     {
       "id": "shipped",
-      "topic": "ship-log",
-      "question": "what shipped lately?",
-      "quip": "The commit gremlin has been fed."
+      "question": "what shipped lately?"
+    },
+    {
+      "id": "workbench",
+      "questions": [
+        "what else is on the workbench?",
+        "show me another project",
+        "got anything weirder?"
+      ],
+      "max_repos": 6
+    },
+    {
+      "id": "stats",
+      "question": "any stats?"
+    },
+    {
+      "id": "habits",
+      "question": "what are Sand's coding habits like?"
     },
     {
       "id": "fun",
-      "topic": "fun-facts",
-      "question": "tell me something fun",
-      "quip": "Recomputed every six hours. No facts were harmed."
+      "questions": [
+        "tell me something fun about Sand",
+        "more fun facts?",
+        "what else should people know?"
+      ],
+      "per_answer": 3
     },
     {
-      "id": "lab",
-      "topic": "lab-status",
-      "question": "how's the lab holding up?",
-      "quip": "Beakers bubbling within normal parameters."
-    },
-    {
-      "id": "pipeline",
-      "topic": "pipeline",
-      "question": "status check on {number}?",
-      "quip": "No goblins detected in the pipes."
-    },
-    {
-      "id": "quests",
-      "topic": "side-quests",
-      "question": "what else is on the workbench?",
-      "quip": "Every repo is a portal. Some are just smaller."
+      "id": "contact",
+      "question": "how do I reach Sand?"
     }
   ]
 }

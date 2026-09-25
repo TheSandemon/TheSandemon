@@ -10,14 +10,10 @@
 
 <br />
 
-![Sandemon's Lab: an animated build facility whose reactor, machine bays and monitors are driven by GitHub activity](assets/lab.svg)
-
 </div>
 
-## Ask the lab
-
 <!-- harness:start -->
-<img src="assets/harness-chat.svg" alt="Agent Chat: Kyle Touchet's lab, now building Fold the harness panels into one rotating agent chat" width="100%" />
+<img src="assets/harness-chat.svg" alt="sand-agent: a live agent chat about Kyle Touchet, typed from public GitHub history" width="100%" />
 <!-- harness:end -->
 
 ## Featured work

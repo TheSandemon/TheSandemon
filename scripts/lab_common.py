@@ -1,4 +1,4 @@
-"""Shared helpers for the lab pipeline: fetch-github-data -> compute-lab-state -> generate-lab-svg."""
+"""Shared helpers for the stats pipeline: fetch-github-data -> compute-lab-state."""
 
 from __future__ import annotations
 
@@ -13,7 +13,6 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG_PATH = ROOT / "config" / "lab.json"
 SNAPSHOT_PATH = ROOT / "data" / "snapshot.json"
 STATE_PATH = ROOT / "data" / "lab-state.json"
-SVG_PATH = ROOT / "assets" / "lab.svg"
 LOG = logging.getLogger("sandemon.lab")
 
 
