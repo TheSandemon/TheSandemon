@@ -2,10 +2,9 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 import unittest
-from xml.etree import ElementTree
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from update_lab import chart_markup, compute_state, render_svg, six_month_start  # noqa: E402
+from update_lab import compute_state, six_month_start  # noqa: E402
 
 
 CONFIG = {
@@ -44,28 +43,13 @@ class LabTests(unittest.TestCase):
         self.assertEqual(state["active_days"], 2)
         self.assertEqual(state["contributions_7d"], 2)
 
-    def test_warning_escapes_repo_name_and_all_motion_repeats(self):
+    def test_failed_workflow_marks_warning(self):
         snapshot = {
             "contributions": [{"date": "2026-09-24", "count": 2}],
-            "events": [{
-                "created_at": "2026-09-24T00:00:00Z",
-                "repo": {"name": "TheSandemon/a&b<test>"},
-            }],
+            "events": [{"created_at": "2026-09-24T00:00:00Z", "repo": {"name": "TheSandemon/a&b"}}],
             "workflow": "failure",
         }
-        state = compute_state(snapshot, CONFIG, NOW)
-        self.assertEqual(state["condition"], "WARNING")
-        svg = render_svg(state)
-        self.assertIn("A&amp;B&lt;TEST&gt;", svg)
-        self.assertNotIn("PIXEL", svg.upper())
-        self.assertNotIn("IDLE LOOP", svg.upper())
-        self.assertNotIn("SCIENTIST", svg.upper())
-        root = ElementTree.fromstring(svg)
-        animations = [node for node in root.iter() if node.tag.rsplit("}", 1)[-1].startswith("animate")]
-        self.assertGreaterEqual(len(animations), 8)
-        self.assertTrue(all(node.attrib.get("repeatCount") == "indefinite" for node in animations))
-        self.assertIn('to="-', chart_markup(state["days"]))
-
+        self.assertEqual(compute_state(snapshot, CONFIG, NOW)["condition"], "WARNING")
 
 if __name__ == "__main__":
     unittest.main()

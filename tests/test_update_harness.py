@@ -5,9 +5,12 @@ import unittest
 from xml.etree import ElementTree
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+from datetime import date  # noqa: E402
+
+import chat_svg  # noqa: E402
 from update_harness import (  # noqa: E402
-    build_scenes, extract_work_items, fun_facts, longest_streak, plan_steps, readme_block, render_chat,
-    rotation, update_readme, wrap,
+    build_conversation, extract_work_items, fun_facts, longest_streak, md, plan_steps, readme_block,
+    render_chat, update_readme, wrap,
 )
 
 
@@ -50,7 +53,7 @@ class ExtractionTests(unittest.TestCase):
         self.assertTrue(all(len(line) <= 11 for line in lines))
 
     def test_filters_ignored_private_and_aliases_repos(self):
-        config = dict(CONFIG, ignored_repos=["secret-sauce"])
+        config = dict(CONFIG, ignored_repos=["secret-sauce"], repo_aliases={"TheSandemon": "Sandemon's Lab"})
         snapshot = {
             "pulls": [pull(1, "Old work"), pull(7, "Ignored", repo="TheSandemon/secret-sauce"),
                       pull(3, "Upstream fix", repo="octo/tool", merged=None)],
@@ -85,62 +88,73 @@ class ExtractionTests(unittest.TestCase):
 
 
 LAB_STATE = {
-    "activity": "BUILDING", "condition": "STABLE", "mode": "SHIPPING", "focus": "THE LAB",
-    "machines": [{}, {}], "machine_slots": 5, "contributions_7d": 9, "contributions_24h": 2,
-    "prs_7d": 3, "repos_touched_7d": 2, "workflow": "success", "total_6mo": 1234, "peak_day": 20,
+    "activity": "BUILDING", "contributions_7d": 9, "prs_7d": 3, "total_6mo": 1234, "peak_day": 20,
     "active_days": 40, "days": [{"count": 1}, {"count": 2}, {"count": 0}, {"count": 3}, {"count": 4}, {"count": 5}],
 }
 LAB_SNAPSHOT = {"repos": [
-    {"name": "godotion", "language": "GDScript", "fork": False, "pushed_at": "2026-08-10T00:00:00Z"},
+    {"name": "godotion", "language": "GDScript", "fork": False, "pushed_at": "2026-08-10T00:00:00Z",
+     "description": "Motion graphics for Godot", "stars": 2},
     {"name": "TheSandemon", "language": "Python", "fork": False, "pushed_at": "2026-09-24T00:00:00Z"},
     {"name": "someones-game", "language": "TypeScript", "fork": True, "pushed_at": "2026-09-09T00:00:00Z"},
+    {"name": "hidden-thing", "language": "Go", "fork": False, "private": True, "description": "Top secret"},
 ]}
+TODAY = date(2026, 9, 25)
 
 
-class RenderTests(unittest.TestCase):
+class ChatCase(unittest.TestCase):
     def setUp(self):
         commits = [commit(f"Add change number {i} <b>&", repo=f"TheSandemon/repo{i % 3}", sha=f"{i:07d}abc",
                           date=f"2026-09-{10 + i}T22:30:00-05:00") for i in range(14)]
         pulls = [
             pull(9, "Tune <the> reactor & friends", body="- Plan A\n- Plan B",
                  files=["scripts/update_lab.py", "tests/test_update_lab.py", "README.md"]),
-            pull(8, "Draft pipeline", body="- Build it", merged=None,
-                 files=["src/app.ts", "src/app.test.ts"]),
+            pull(8, "Draft pipeline", body="- Build it", merged=None, files=["src/app.ts"]),
         ]
         pulls[1].update(state="draft", updated_at="2026-09-10T00:00:00Z")
         self.work = extract_work_items({"pulls": pulls, "commits": commits}, CONFIG)
-        self.scenes = build_scenes(self.work, CONFIG, LAB_STATE, LAB_SNAPSHOT)
-        self.svg = render_chat(self.scenes, self.work, CONFIG, LAB_STATE)
+        self.config = dict(CONFIG, fun_facts=["Hand-written fact one", "Hand-written fact two"])
+        self.steps = build_conversation(self.work, self.config, LAB_STATE, LAB_SNAPSHOT, TODAY)
+        self.svg = render_chat(self.steps, self.config, TODAY)
 
-    def test_one_chat_rotates_through_every_configured_scene(self):
-        self.assertEqual([s["id"] for s in self.scenes], [s["id"] for s in CONFIG["scenes"]])
-        root = ElementTree.fromstring(self.svg)
-        motion = animations(self.svg)
-        self.assertTrue(all(node.attrib.get("repeatCount") == "indefinite" for node in motion))
-        cycle = f"{7 * len(self.scenes):g}s"
-        rotating = [node for node in motion if node.attrib.get("dur") == cycle]
-        self.assertEqual(len(rotating), 3 * len(self.scenes))  # scene, sidebar topic and progress dot
-        self.assertIsNotNone(root)
+    def questions(self, steps):
+        return [step[1] for step in steps if step[0] == "user"]
 
-    def test_first_frame_shows_only_the_first_scene(self):
-        self.assertIn('values="1;1;0;0;1"', rotation(0, 3, 21))
-        self.assertIn('values="0;0;1;1;0;0"', rotation(1, 3, 21))
-        self.assertIn('values="0;0;1;1;0"', rotation(2, 3, 21))
-        self.assertEqual(rotation(0, 1, 7), "")
 
-    def test_chat_mixes_real_work_and_fun_about_sand(self):
+class ConversationTests(ChatCase):
+    def test_intro_first_contact_last_and_middle_reshuffles_by_day(self):
+        questions = self.questions(self.steps)
+        by_id = {b["id"]: b for b in CONFIG["beats"]}
+        self.assertEqual(questions[0], by_id["intro"]["question"])
+        self.assertEqual(questions[-1], by_id["contact"]["question"])
+        again = build_conversation(self.work, self.config, LAB_STATE, LAB_SNAPSHOT, TODAY)
+        self.assertEqual(again, self.steps)
+        orders = {tuple(self.questions(build_conversation(self.work, self.config, LAB_STATE, LAB_SNAPSHOT,
+                                                          date(2026, 9, day)))) for day in range(1, 8)}
+        self.assertGreater(len(orders), 1)
+
+    def test_answers_come_from_real_work_config_and_linkedin(self):
+        text = " ".join(
+            "".join(t for t, _ in seg) for step in self.steps if step[0] in ("say", "bullets") for seg in step[1]
+        )
+        self.assertIn("Tune <the> reactor & friends", text)
+        self.assertIn("Plan A", text)
+        self.assertIn(CONFIG["about"]["name"], text)
+        self.assertIn(CONFIG["about"]["career"][0]["org"], text)
+        self.assertIn("Motion graphics for Godot", text)
+        self.assertIn("Hand-written fact two", text)
+        self.assertNotIn("Top secret", text)
+        self.assertNotIn("someones-game", text)
+        self.assertIn("<the>", "".join(str(s) for s in self.steps))
         self.assertNotIn("<the>", self.svg)
-        self.assertNotIn("<b>", self.svg)
-        self.assertIn("Tune &lt;the&gt; reactor &amp; friends", self.svg)
-        self.assertIn("Plan A", self.svg)
-        self.assertIn("Add change number 13", self.svg)
-        self.assertIn("Draft pipeline", self.svg)
-        self.assertIn("app.test.ts", self.svg)
-        self.assertIn(CONFIG["about"]["name"], self.svg)
-        self.assertIn("godotion", self.svg)
-        self.assertIn("forked for fun: someones-game", self.svg)
-        self.assertIn("2 of 5 machine bays lit", self.svg)
-        self.assertIn('"add" (14 times)', self.svg)
+        self.assertIn("Tune &lt;the&gt;", self.svg)
+
+    def test_empty_beats_are_skipped(self):
+        steps = build_conversation(self.work, dict(CONFIG, fun_facts=[]), {}, {}, TODAY)
+        joined = str(steps)
+        self.assertNotIn("contributions, 6 mo", joined)
+        self.assertNotIn(CONFIG["beats"][7]["questions"][0], self.questions(steps))
+        with self.assertRaises(RuntimeError):
+            build_conversation(self.work, dict(CONFIG, beats=[]), {}, {}, TODAY)
 
     def test_fun_facts_come_from_real_activity(self):
         facts = fun_facts(self.work, LAB_STATE, LAB_SNAPSHOT, dict(CONFIG, fun_facts=["Hand-written fact"]))
@@ -150,17 +164,41 @@ class RenderTests(unittest.TestCase):
         self.assertEqual(longest_streak([]), 0)
         self.assertTrue(any(f.startswith("Speaks GDScript, Python") for f in facts))
 
-    def test_scene_order_hidden_scenes_and_missing_lab_data(self):
-        config = dict(CONFIG, scenes=[{"id": "shipped"}, {"id": "building", "hidden": True}, {"id": "lab"}, {"id": "nope"}])
-        self.assertEqual([s["id"] for s in build_scenes(self.work, config, {}, {})], ["shipped"])
-        with self.assertRaises(RuntimeError):
-            build_scenes(self.work, dict(CONFIG, scenes=[]), {}, {})
+    def test_markdown_segments(self):
+        self.assertEqual(md("a **b** `c` d"), [("a ", "r"), ("b", "b"), (" ", "r"), ("c", "m"), (" d", "r")])
 
-    def test_no_line_overflows_the_bubble(self):
-        for scene in self.scenes:
-            for kind, value in scene["lines"]:
-                if kind != "stages":
-                    self.assertLessEqual(len(value), 98, value)
+
+class RenderTests(ChatCase):
+    def test_every_animation_loops_forever_on_one_cycle(self):
+        motion = animations(self.svg)
+        self.assertTrue(motion)
+        self.assertTrue(all(node.attrib.get("repeatCount") == "indefinite" for node in motion))
+        cycles = {node.attrib["dur"] for node in motion if "keyTimes" in node.attrib and node.attrib.get("calcMode") == "discrete"}
+        self.assertEqual(len(cycles), 1)
+
+    def test_loop_seam_scrolls_exactly_one_conversation(self):
+        items, scroll, inputs, total, cycle = chat_svg.layout(self.steps)
+        self.assertEqual(scroll[0], (0.0, 0.0))
+        self.assertEqual(scroll[-1], (cycle, total))
+        self.assertEqual(len(inputs), len(self.questions(self.steps)))
+        self.assertIn(f'translate(0 {-total:.1f})', self.svg)
+        offsets = [offset for _, offset in scroll]
+        self.assertEqual(offsets, sorted(offsets))
+
+    def test_lines_fit_and_words_stream_in_order(self):
+        items, _, _, _, _ = chat_svg.layout(self.steps)
+        lines = [item for item in items if item["kind"] == "line"]
+        self.assertTrue(lines)
+        for line in lines:
+            end = max(x + chat_svg.width(t.rstrip(), s) for t, s, x in line["tokens"])
+            self.assertLessEqual(line["x0"] - chat_svg.TX + end, chat_svg.TMAX + 0.5)
+            times = [t for t, _ in line["stamps"]]
+            self.assertEqual(times, sorted(times))
+
+    def test_text_only_uses_embedded_glyphs(self):
+        self.assertEqual(chat_svg.safe("café ✨ naïve"), "café  naïve")
+        self.assertIn("@font-face{font-family:SandSans", self.svg)
+        ElementTree.fromstring(self.svg)
 
     def test_readme_block_replaces_only_marked_section(self):
         readme = "top\n<!-- harness:start -->\nold\n<!-- harness:end -->\nbottom\n"
@@ -172,12 +210,12 @@ class RenderTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             update_readme("no markers", readme_block(self.svg))
 
-    def test_committed_readme_points_at_the_single_chat(self):
+    def test_committed_readme_shows_only_the_chat(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         self.assertIn("assets/harness-chat.svg", readme)
-        self.assertNotIn("harness-terminal", readme)
-        self.assertNotIn("harness-flow", readme)
+        self.assertNotIn("lab.svg", readme)
         self.assertTrue((ROOT / "assets" / "harness-chat.svg").exists())
+        self.assertFalse((ROOT / "assets" / "lab.svg").exists())
 
 
 if __name__ == "__main__":

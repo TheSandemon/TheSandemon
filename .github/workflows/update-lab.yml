@@ -34,13 +34,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.LAB_HISTORY_TOKEN || secrets.GITHUB_TOKEN }}
         run: python scripts/fetch-github-data.py
-      - name: Compute lab state
+      - name: Compute contribution stats
         run: python scripts/compute-lab-state.py
-      - name: Generate lab scene
-        run: python scripts/generate-lab-svg.py
-      # Runs even if the lab failed, so one broken API call doesn't freeze both sections.
-      - name: Generate harness panels
-        # The default token keeps panel text limited to public work.
+      # Runs even if the stats fetch failed, so one broken API call doesn't freeze the chat.
+      - name: Generate agent chat
+        # The default token keeps chat text limited to public work.
         if: ${{ !cancelled() && steps.tests.outcome == 'success' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -48,7 +46,7 @@ jobs:
       - name: Commit changed outputs
         if: ${{ !cancelled() && steps.tests.outcome == 'success' }}
         run: |
-          git add assets/lab.svg assets/harness-*.svg README.md
+          git add assets/harness-*.svg README.md
           if [ -d data ]; then git add data/; fi
           if git diff --cached --quiet; then
             echo "Profile visuals unchanged"

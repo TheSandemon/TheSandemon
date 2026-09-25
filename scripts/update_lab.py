@@ -1,6 +1,7 @@
-"""Run the whole lab pipeline: fetch-github-data -> compute-lab-state -> generate-lab-svg.
+"""Run the stats pipeline: fetch-github-data -> compute-lab-state.
 
-Each stage is also runnable on its own; this wrapper keeps one command for local use and tests.
+Both stages also run on their own. The agent chat reads their outputs (data/snapshot.json and
+data/lab-state.json) and imports ROOT, read_json and request_json from here.
 """
 
 from __future__ import annotations
@@ -13,7 +14,7 @@ from pathlib import Path
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from lab_common import CONFIG_PATH, LOG, ROOT, SNAPSHOT_PATH, STATE_PATH, SVG_PATH, read_json, setup_logging, six_month_start, write_json  # noqa: E402
+from lab_common import CONFIG_PATH, LOG, ROOT, SNAPSHOT_PATH, STATE_PATH, read_json, setup_logging, six_month_start, write_json  # noqa: E402
 
 
 def load_stage(filename: str):
@@ -26,23 +27,18 @@ def load_stage(filename: str):
 
 fetch_stage = load_stage("fetch-github-data.py")
 compute_stage = load_stage("compute-lab-state.py")
-render_stage = load_stage("generate-lab-svg.py")
 
 fetch_snapshot = fetch_stage.fetch_snapshot
 request_json = fetch_stage.request_json
 compute_state = compute_stage.compute_state
-chart_markup = render_stage.chart_markup
-render_svg = render_stage.render_svg
 
-# ROOT, read_json and request_json stay importable for other generators (e.g. harness panels).
-__all__ = ["ROOT", "chart_markup", "compute_state", "fetch_snapshot", "read_json", "render_svg", "request_json",
-           "six_month_start"]
+# ROOT, read_json and request_json stay importable for the agent chat generator.
+__all__ = ["ROOT", "compute_state", "fetch_snapshot", "read_json", "request_json", "six_month_start"]
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--fixture", type=Path, help="Offline JSON snapshot to use instead of fetching")
-    parser.add_argument("--output", type=Path, default=SVG_PATH)
+    parser.add_argument("--fixture", type=Path, help="Offline JSON snapshot to compute from, without writing data/")
     args = parser.parse_args()
     try:
         config = read_json(CONFIG_PATH)
@@ -55,13 +51,11 @@ def main() -> int:
         state = compute_state(snapshot, config, now)
         if not args.fixture:
             write_json(STATE_PATH, state)
-        args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(render_svg(state), encoding="utf-8")
-        LOG.info("Generated %s: %s / %s, %s machines", args.output,
-                 state["activity"], state["condition"], len(state["machines"]))
+        LOG.info("Computed stats: %s contributions in six months, %s active days",
+                 state["total_6mo"], state["active_days"])
         return 0
     except (OSError, RuntimeError, KeyError, TypeError, ValueError) as exc:
-        LOG.error("Lab generation failed: %s", exc)
+        LOG.error("Stats pipeline failed: %s", exc)
         return 1
 
 

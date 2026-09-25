@@ -1,6 +1,6 @@
 """Fetch six months of contributions, recent public events, repositories and workflow status.
 
-Writes a compact, stable snapshot to data/snapshot.json for compute-lab-state.py.
+Writes a compact, stable snapshot to data/snapshot.json for compute-lab-state.py and the agent chat.
 """
 
 from __future__ import annotations
@@ -79,6 +79,9 @@ def trim_repo(repo: dict) -> dict | None:
             "language": repo.get("language"),
             "fork": bool(repo.get("fork")),
             "archived": bool(repo.get("archived")),
+            "private": bool(repo.get("private")),
+            "description": repo.get("description") or "",
+            "stars": int(repo.get("stargazers_count") or 0),
         }
     except (KeyError, TypeError):
         return None
