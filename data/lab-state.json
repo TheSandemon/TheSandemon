@@ -2,8 +2,8 @@
   "active_days": 90,
   "activity": "OVERCLOCKED",
   "condition": "ENERGIZED",
-  "contributions_24h": 12,
-  "contributions_7d": 68,
+  "contributions_24h": 16,
+  "contributions_7d": 72,
   "days": [
     {
       "count": 3,
@@ -742,7 +742,7 @@
       "date": "2026-09-27"
     },
     {
-      "count": 12,
+      "count": 16,
       "date": "2026-09-28"
     }
   ],
@@ -767,14 +767,6 @@
       "last_active": "2026-09-25",
       "repo": "TheSandemon",
       "work": 41
-    },
-    {
-      "energy": 1,
-      "label": "OPEN-CODE-REV",
-      "language": "MIXED",
-      "last_active": "2026-09-14",
-      "repo": "open-code-review",
-      "work": 1
     }
   ],
   "mode": "EXPERIMENTING",
@@ -782,6 +774,6 @@
   "prs_7d": 19,
   "repos_touched_7d": 1,
   "start": "2026-03-28",
-  "total_6mo": 1375,
+  "total_6mo": 1379,
   "workflow": "success"
 }
