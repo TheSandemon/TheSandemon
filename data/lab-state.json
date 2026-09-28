@@ -2,13 +2,9 @@
   "active_days": 90,
   "activity": "OVERCLOCKED",
   "condition": "ENERGIZED",
-  "contributions_24h": 7,
-  "contributions_7d": 55,
+  "contributions_24h": 2,
+  "contributions_7d": 58,
   "days": [
-    {
-      "count": 1,
-      "date": "2026-03-27"
-    },
     {
       "count": 3,
       "date": "2026-03-28"
@@ -742,11 +738,15 @@
       "date": "2026-09-26"
     },
     {
-      "count": 7,
+      "count": 8,
       "date": "2026-09-27"
+    },
+    {
+      "count": 2,
+      "date": "2026-09-28"
     }
   ],
-  "end": "2026-09-27",
+  "end": "2026-09-28",
   "focus": "THE LAB",
   "log": [
     "09-25 PUSH      THE LAB        x1",
@@ -781,7 +781,7 @@
   "peak_day": 142,
   "prs_7d": 19,
   "repos_touched_7d": 1,
-  "start": "2026-03-27",
-  "total_6mo": 1363,
+  "start": "2026-03-28",
+  "total_6mo": 1365,
   "workflow": "success"
 }
