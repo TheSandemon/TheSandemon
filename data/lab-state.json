@@ -1,14 +1,10 @@
 {
-  "active_days": 90,
+  "active_days": 89,
   "activity": "OVERCLOCKED",
   "condition": "ENERGIZED",
-  "contributions_24h": 16,
+  "contributions_24h": 0,
   "contributions_7d": 72,
   "days": [
-    {
-      "count": 3,
-      "date": "2026-03-28"
-    },
     {
       "count": 0,
       "date": "2026-03-29"
@@ -744,19 +740,23 @@
     {
       "count": 16,
       "date": "2026-09-28"
+    },
+    {
+      "count": 0,
+      "date": "2026-09-29"
     }
   ],
-  "end": "2026-09-28",
+  "end": "2026-09-29",
   "focus": "THE LAB",
   "log": [
+    "09-29 STAR      VOICESTUDIO",
     "09-25 PUSH      THE LAB        x1",
     "09-25 PR MERGED THE LAB",
     "09-25 PR ASSIGN THE LAB",
     "09-25 PR OPENED THE LAB",
     "09-25 PUSH      THE LAB        x1",
     "09-25 PUSH      THE LAB        x1",
-    "09-25 PR MERGED THE LAB",
-    "09-25 PR ASSIGN THE LAB"
+    "09-25 PR MERGED THE LAB"
   ],
   "machine_slots": 5,
   "machines": [
@@ -767,13 +767,21 @@
       "last_active": "2026-09-25",
       "repo": "TheSandemon",
       "work": 41
+    },
+    {
+      "energy": 1,
+      "label": "VOICESTUDIO",
+      "language": "MIXED",
+      "last_active": "2026-09-29",
+      "repo": "VoiceStudio",
+      "work": 1
     }
   ],
-  "mode": "EXPERIMENTING",
+  "mode": "OPEN-SOURCE",
   "peak_day": 142,
   "prs_7d": 19,
-  "repos_touched_7d": 1,
-  "start": "2026-03-28",
-  "total_6mo": 1379,
+  "repos_touched_7d": 2,
+  "start": "2026-03-29",
+  "total_6mo": 1376,
   "workflow": "success"
 }
