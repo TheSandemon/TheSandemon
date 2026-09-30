@@ -3,12 +3,8 @@
   "activity": "OVERCLOCKED",
   "condition": "ENERGIZED",
   "contributions_24h": 0,
-  "contributions_7d": 72,
+  "contributions_7d": 51,
   "days": [
-    {
-      "count": 0,
-      "date": "2026-03-29"
-    },
     {
       "count": 0,
       "date": "2026-03-30"
@@ -744,9 +740,13 @@
     {
       "count": 0,
       "date": "2026-09-29"
+    },
+    {
+      "count": 0,
+      "date": "2026-09-30"
     }
   ],
-  "end": "2026-09-29",
+  "end": "2026-09-30",
   "focus": "THE LAB",
   "log": [
     "09-29 STAR      VOICESTUDIO",
@@ -781,7 +781,7 @@
   "peak_day": 142,
   "prs_7d": 19,
   "repos_touched_7d": 2,
-  "start": "2026-03-29",
+  "start": "2026-03-30",
   "total_6mo": 1376,
   "workflow": "success"
 }
