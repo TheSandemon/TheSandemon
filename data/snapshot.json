@@ -1096,38 +1096,19 @@
       "created_at": "2026-09-01T13:44:31Z",
       "repo": "TechNomadsMC/technomads-modpack",
       "type": "IssueCommentEvent"
-    },
-    {
-      "created_at": "2026-09-01T12:49:35Z",
-      "repo": "TheSandemon/world-of-claudecraft",
-      "type": "CreateEvent"
-    },
-    {
-      "action": "created",
-      "created_at": "2026-09-01T13:44:37Z",
-      "repo": "TechNomadsMC/technomads-services",
-      "type": "IssueCommentEvent"
-    },
-    {
-      "action": "created",
-      "created_at": "2026-09-01T13:44:34Z",
-      "repo": "TechNomadsMC/technomads-minecraft",
-      "type": "IssueCommentEvent"
-    },
-    {
-      "action": "created",
-      "created_at": "2026-09-01T13:44:28Z",
-      "repo": "TechNomadsMC/technomads-web",
-      "type": "IssueCommentEvent"
-    },
-    {
-      "created_at": "2026-09-01T06:39:02Z",
-      "repo": "TheSandemon/TheSandemon",
-      "size": 0,
-      "type": "PushEvent"
     }
   ],
   "repos": [
+    {
+      "archived": false,
+      "description": "Profile README \u2014 Kyle Touchet, Creative Technologist",
+      "fork": false,
+      "language": "Python",
+      "name": "TheSandemon",
+      "private": false,
+      "pushed_at": "2026-10-01T13:12:07Z",
+      "stars": 1
+    },
     {
       "archived": false,
       "description": "Procedural airship hauling contracts for Create: Aeronautics \u2014 physics-compiled cargo, quest compasses, and dry-land route generation. NeoForge 1.21.1.",
@@ -1136,16 +1117,6 @@
       "name": "aeronautics_delivery_quests",
       "private": false,
       "pushed_at": "2026-10-01T07:45:34Z",
-      "stars": 1
-    },
-    {
-      "archived": false,
-      "description": "Profile README \u2014 Kyle Touchet, Creative Technologist",
-      "fork": false,
-      "language": "Python",
-      "name": "TheSandemon",
-      "private": false,
-      "pushed_at": "2026-10-01T07:44:31Z",
       "stars": 1
     },
     {
