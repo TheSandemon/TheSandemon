@@ -733,7 +733,7 @@
       "date": "2026-09-30"
     },
     {
-      "count": 8,
+      "count": 10,
       "date": "2026-10-01"
     }
   ],
@@ -1130,12 +1130,22 @@
   "repos": [
     {
       "archived": false,
+      "description": "Procedural airship hauling contracts for Create: Aeronautics \u2014 physics-compiled cargo, quest compasses, and dry-land route generation. NeoForge 1.21.1.",
+      "fork": false,
+      "language": "Java",
+      "name": "aeronautics_delivery_quests",
+      "private": false,
+      "pushed_at": "2026-10-01T07:45:34Z",
+      "stars": 1
+    },
+    {
+      "archived": false,
       "description": "Profile README \u2014 Kyle Touchet, Creative Technologist",
       "fork": false,
       "language": "Python",
       "name": "TheSandemon",
       "private": false,
-      "pushed_at": "2026-10-01T07:44:18Z",
+      "pushed_at": "2026-10-01T07:44:31Z",
       "stars": 1
     },
     {
@@ -1177,16 +1187,6 @@
       "private": false,
       "pushed_at": "2026-08-03T12:55:14Z",
       "stars": 0
-    },
-    {
-      "archived": false,
-      "description": "Procedural airship hauling contracts for Create: Aeronautics \u2014 physics-compiled cargo, quest compasses, and dry-land route generation. NeoForge 1.21.1.",
-      "fork": false,
-      "language": "Java",
-      "name": "aeronautics_delivery_quests",
-      "private": false,
-      "pushed_at": "2026-08-02T05:19:12Z",
-      "stars": 1
     },
     {
       "archived": false,
