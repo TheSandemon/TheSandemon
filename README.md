@@ -4,7 +4,7 @@
 
 **AI Native Product Engineer**
 
-[![Portfolio](https://img.shields.io/badge/sand.gallery-E5AD23?style=for-the-badge&labelColor=07170D)](https://sand.gallery)
+[![Portfolio](https://img.shields.io/badge/kyletouchet.dev-E5AD23?style=for-the-badge&labelColor=07170D)](https://kyletouchet.dev)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-07170D?style=for-the-badge&labelColor=8A7135)](https://www.linkedin.com/in/kyle-touchet/)
 [![Email](https://img.shields.io/badge/Email-07170D?style=for-the-badge&labelColor=8A7135)](mailto:kyletouchet@gmail.com)
 
@@ -26,6 +26,6 @@
 
 *You need only ask.*
 
-**[sand.gallery](https://sand.gallery)**
+**[kyletouchet.dev](https://kyletouchet.dev)**
 
 </div>
