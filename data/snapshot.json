@@ -1080,39 +1080,9 @@
       "type": "WatchEvent"
     },
     {
-      "action": "created",
-      "created_at": "2026-09-01T14:00:55Z",
-      "repo": "TechNomadsMC/technomads-web",
-      "type": "IssueCommentEvent"
-    },
-    {
-      "action": "created",
-      "created_at": "2026-09-01T13:44:31Z",
-      "repo": "TechNomadsMC/technomads-modpack",
-      "type": "IssueCommentEvent"
-    },
-    {
       "created_at": "2026-09-01T12:49:35Z",
       "repo": "TheSandemon/world-of-claudecraft",
       "type": "CreateEvent"
-    },
-    {
-      "action": "created",
-      "created_at": "2026-09-01T13:44:37Z",
-      "repo": "TechNomadsMC/technomads-services",
-      "type": "IssueCommentEvent"
-    },
-    {
-      "action": "created",
-      "created_at": "2026-09-01T13:44:34Z",
-      "repo": "TechNomadsMC/technomads-minecraft",
-      "type": "IssueCommentEvent"
-    },
-    {
-      "action": "created",
-      "created_at": "2026-09-01T13:44:28Z",
-      "repo": "TechNomadsMC/technomads-web",
-      "type": "IssueCommentEvent"
     },
     {
       "created_at": "2026-09-01T06:39:02Z",

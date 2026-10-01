@@ -264,20 +264,6 @@
       "question": "any GitHub stats?"
     },
     {
-      "id": "technomads",
-      "type": "qa",
-      "question": "what's Technomads?",
-      "think": 1.0,
-      "say": [
-        "The platform behind a public multiplayer game server, at **technomads.fun**."
-      ],
-      "bullets": [
-        "A member-facing site with Stripe-backed memberships",
-        "Automated server operations over SFTP and RCON",
-        "A custom launcher client, a Discord bridge, and the Java gameplay mods the server runs on"
-      ]
-    },
-    {
       "id": "it-roots",
       "type": "qa",
       "question": "where did Sand's IT career start?",
