@@ -1,18 +1,10 @@
 {
-  "active_days": 90,
-  "activity": "OVERCLOCKED",
-  "condition": "ENERGIZED",
-  "contributions_24h": 2,
-  "contributions_7d": 53,
+  "active_days": 89,
+  "activity": "BUILDING",
+  "condition": "STABLE",
+  "contributions_24h": 0,
+  "contributions_7d": 36,
   "days": [
-    {
-      "count": 0,
-      "date": "2026-03-30"
-    },
-    {
-      "count": 2,
-      "date": "2026-03-31"
-    },
     {
       "count": 2,
       "date": "2026-04-01"
@@ -744,9 +736,13 @@
     {
       "count": 2,
       "date": "2026-09-30"
+    },
+    {
+      "count": 0,
+      "date": "2026-10-01"
     }
   ],
-  "end": "2026-09-30",
+  "end": "2026-10-01",
   "focus": "THE LAB",
   "log": [
     "09-29 STAR      VOICESTUDIO",
@@ -781,7 +777,7 @@
   "peak_day": 142,
   "prs_7d": 19,
   "repos_touched_7d": 2,
-  "start": "2026-03-30",
-  "total_6mo": 1378,
+  "start": "2026-04-01",
+  "total_6mo": 1376,
   "workflow": "success"
 }
