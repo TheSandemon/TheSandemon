@@ -1,14 +1,10 @@
 {
-  "active_days": 90,
-  "activity": "OVERCLOCKED",
-  "condition": "ENERGIZED",
-  "contributions_24h": 10,
-  "contributions_7d": 46,
+  "active_days": 89,
+  "activity": "BUILDING",
+  "condition": "STABLE",
+  "contributions_24h": 0,
+  "contributions_7d": 42,
   "days": [
-    {
-      "count": 2,
-      "date": "2026-04-01"
-    },
     {
       "count": 0,
       "date": "2026-04-02"
@@ -740,9 +736,13 @@
     {
       "count": 10,
       "date": "2026-10-01"
+    },
+    {
+      "count": 0,
+      "date": "2026-10-02"
     }
   ],
-  "end": "2026-10-01",
+  "end": "2026-10-02",
   "focus": "THE LAB",
   "log": [
     "10-01 PUSH      THE LAB        x1",
@@ -785,7 +785,7 @@
   "peak_day": 142,
   "prs_7d": 6,
   "repos_touched_7d": 2,
-  "start": "2026-04-01",
-  "total_6mo": 1386,
+  "start": "2026-04-02",
+  "total_6mo": 1384,
   "workflow": "success"
 }
