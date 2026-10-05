@@ -1,14 +1,10 @@
 {
   "active_days": 89,
-  "activity": "BUILDING",
+  "activity": "TINKERING",
   "condition": "STABLE",
   "contributions_24h": 0,
-  "contributions_7d": 28,
+  "contributions_7d": 12,
   "days": [
-    {
-      "count": 0,
-      "date": "2026-04-04"
-    },
     {
       "count": 0,
       "date": "2026-04-05"
@@ -740,9 +736,13 @@
     {
       "count": 0,
       "date": "2026-10-04"
+    },
+    {
+      "count": 0,
+      "date": "2026-10-05"
     }
   ],
-  "end": "2026-10-04",
+  "end": "2026-10-05",
   "focus": "THE LAB",
   "log": [
     "10-01 PUSH      AERONAUTICS_DE x1",
@@ -785,7 +785,7 @@
   "peak_day": 142,
   "prs_7d": 0,
   "repos_touched_7d": 3,
-  "start": "2026-04-04",
+  "start": "2026-04-05",
   "total_6mo": 1384,
   "workflow": "success"
 }
