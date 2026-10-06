@@ -781,10 +781,10 @@
       "work": 1
     }
   ],
-  "mode": "OPEN-SOURCE",
+  "mode": "EXPERIMENTING",
   "peak_day": 142,
   "prs_7d": 0,
-  "repos_touched_7d": 3,
+  "repos_touched_7d": 2,
   "start": "2026-04-06",
   "total_6mo": 1400,
   "workflow": "success"
