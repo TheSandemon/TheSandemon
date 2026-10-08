@@ -762,7 +762,7 @@
       "language": "PYTHON",
       "last_active": "2026-10-01",
       "repo": "TheSandemon",
-      "work": 43
+      "work": 18
     },
     {
       "energy": 1,
@@ -784,7 +784,7 @@
   "mode": "EXPERIMENTING",
   "peak_day": 142,
   "prs_7d": 0,
-  "repos_touched_7d": 2,
+  "repos_touched_7d": 0,
   "start": "2026-04-08",
   "total_6mo": 1405,
   "workflow": "success"
