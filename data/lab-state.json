@@ -1,14 +1,10 @@
 {
   "active_days": 91,
-  "activity": "OVERCLOCKED",
-  "condition": "ENERGIZED",
+  "activity": "BUILDING",
+  "condition": "STABLE",
   "contributions_24h": 0,
-  "contributions_7d": 51,
+  "contributions_7d": 35,
   "days": [
-    {
-      "count": 0,
-      "date": "2026-04-11"
-    },
     {
       "count": 0,
       "date": "2026-04-12"
@@ -740,9 +736,13 @@
     {
       "count": 0,
       "date": "2026-10-11"
+    },
+    {
+      "count": 0,
+      "date": "2026-10-12"
     }
   ],
-  "end": "2026-10-11",
+  "end": "2026-10-12",
   "focus": "THE LAB",
   "log": [
     "10-01 PUSH      AERONAUTICS_DE x1",
@@ -781,7 +781,7 @@
   "peak_day": 142,
   "prs_7d": 0,
   "repos_touched_7d": 0,
-  "start": "2026-04-11",
+  "start": "2026-04-12",
   "total_6mo": 1413,
   "workflow": "success"
 }
