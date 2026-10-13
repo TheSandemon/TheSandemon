@@ -747,8 +747,7 @@
   "log": [
     "10-01 PUSH      AERONAUTICS_DE x1",
     "10-01 PUSH      THE LAB        x1",
-    "10-01 PUSH      THE LAB        x1",
-    "09-29 STAR      VOICESTUDIO"
+    "10-01 PUSH      THE LAB        x1"
   ],
   "machine_slots": 5,
   "machines": [
@@ -767,17 +766,9 @@
       "last_active": "2026-10-01",
       "repo": "aeronautics_delivery_quests",
       "work": 1
-    },
-    {
-      "energy": 2,
-      "label": "VOICESTUDIO",
-      "language": "MIXED",
-      "last_active": "2026-09-29",
-      "repo": "VoiceStudio",
-      "work": 1
     }
   ],
-  "mode": "EXPERIMENTING",
+  "mode": "RESEARCH",
   "peak_day": 142,
   "prs_7d": 0,
   "repos_touched_7d": 0,
