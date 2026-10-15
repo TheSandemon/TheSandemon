@@ -744,27 +744,15 @@
   ],
   "end": "2026-10-15",
   "focus": "THE LAB",
-  "log": [
-    "10-01 PUSH      AERONAUTICS_DE x1",
-    "10-01 PUSH      THE LAB        x1",
-    "10-01 PUSH      THE LAB        x1"
-  ],
+  "log": [],
   "machine_slots": 5,
   "machines": [
     {
       "energy": 4,
       "label": "THE LAB",
       "language": "PYTHON",
-      "last_active": "2026-10-01",
+      "last_active": "2026-10-15",
       "repo": "TheSandemon",
-      "work": 2
-    },
-    {
-      "energy": 2,
-      "label": "AERONAUTICS_D",
-      "language": "JAVA",
-      "last_active": "2026-10-01",
-      "repo": "aeronautics_delivery_quests",
       "work": 1
     }
   ],
