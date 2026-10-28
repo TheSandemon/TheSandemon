@@ -2,13 +2,9 @@
   "active_days": 98,
   "activity": "BUILDING",
   "condition": "STABLE",
-  "contributions_24h": 2,
-  "contributions_7d": 30,
+  "contributions_24h": 1,
+  "contributions_7d": 26,
   "days": [
-    {
-      "count": 1,
-      "date": "2026-04-27"
-    },
     {
       "count": 4,
       "date": "2026-04-28"
@@ -740,9 +736,13 @@
     {
       "count": 2,
       "date": "2026-10-27"
+    },
+    {
+      "count": 1,
+      "date": "2026-10-28"
     }
   ],
-  "end": "2026-10-27",
+  "end": "2026-10-28",
   "focus": "THE LAB",
   "log": [],
   "machine_slots": 5,
@@ -760,7 +760,7 @@
   "peak_day": 142,
   "prs_7d": 0,
   "repos_touched_7d": 0,
-  "start": "2026-04-27",
+  "start": "2026-04-28",
   "total_6mo": 1428,
   "workflow": "success"
 }
