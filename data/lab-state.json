@@ -1,14 +1,10 @@
 {
-  "active_days": 97,
+  "active_days": 96,
   "activity": "TINKERING",
   "condition": "STABLE",
   "contributions_24h": 0,
-  "contributions_7d": 6,
+  "contributions_7d": 3,
   "days": [
-    {
-      "count": 2,
-      "date": "2026-05-08"
-    },
     {
       "count": 0,
       "date": "2026-05-09"
@@ -744,9 +740,13 @@
     {
       "count": 0,
       "date": "2026-11-08"
+    },
+    {
+      "count": 0,
+      "date": "2026-11-09"
     }
   ],
-  "end": "2026-11-08",
+  "end": "2026-11-09",
   "focus": "THE LAB",
   "log": [],
   "machine_slots": 5,
@@ -764,7 +764,7 @@
   "peak_day": 142,
   "prs_7d": 0,
   "repos_touched_7d": 0,
-  "start": "2026-05-08",
-  "total_6mo": 1419,
+  "start": "2026-05-09",
+  "total_6mo": 1417,
   "workflow": "success"
 }
